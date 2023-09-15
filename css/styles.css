@@ -1,0 +1,12 @@
+.TitleCard #Pokemon-Logo
+{
+    border-radius:50%;
+    width: 100px;
+    height: auto;
+}
+
+.TitleCard #Page-Title h1
+{
+    font-size: 24px;
+    font-weight: bolder;
+}
