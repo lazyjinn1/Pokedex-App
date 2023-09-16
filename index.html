@@ -3,40 +3,68 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@1&display=swap" rel="stylesheet">
     <link rel = "stylesheet" type = "text/css" href = "css/styles.css">
     <title>Pokedex</title>
   </head>
 
   <body>
+    <div class = "page-grid">
 
-    <header class = "TitleCard">
-      <img id = "Pokemon-Logo" src = "assets/PokemonLogo.png">
-      <h1 id = "Page-Title">Generation 1 Pokedex</h1>
-    </header>
+      <header class = "Introduction">
 
-    <div>
-      <p>Come learn about your favorite Pokemon!</p>
+        <img id = "Pokemon-Logo" src = "assets/PokemonLogo.png">
+        <h1 id = "Page-Title">Pokedex</h1>
+        
+        <p>Come learn about your favorite Pokemon!</p>
+
+        <p id = "pokemon-question">Who is your favorite starter pokemon in Kanto?</p>
+        <form>
+          <label>Pokemon Name:</label>
+          <input id= "Pokemon" name="Pokemon" type="text">
+          <button type="button">Submit</button>
+        </form>
+
+      </header>
+
+      <div class = "pokemon-avatar">
+        <h1 id ="pokemon-name"></h1>
+      </div>
+
+      <div class = "Results">
+        <h1>Pokemon Data</h1>
+        <p> 
+          <span id="BROKEN-pokemon-name"></span> :Pokemon Name
+          <br>
+          <br>
+          <span id="pokedex-number"></span> :Pokedex number
+          <br>
+          <br>
+          <span id="pokemon-weight"></span> :Weight
+          <br>
+          <br>
+          <span id="pokemon-type"></span> :Type
+        </p>
+      </div>
+
     </div>
 
+    <hr>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <footer class = "page-footer">
+      <p id = "footer-title">Follow me at</p>
+      <div class = "Links">
+          <a class = "social-media" href = "https://www.GitHub.com/lazyjinn1" target="_blank">
+              <img src = "assets/github.svg" alt = "Github"> 
+          </a>
+          <a class = "social-media" href = "https://www.twitter.com" target="_blank">
+              <img src = "assets/twitter.svg" alt = "Twitter"> 
+          </a>
+          <a class = "social-media" href = "https://www.LinkedIn.com" target="_blank">
+              <img src = "assets/linkedin.svg" alt = "LinkedIn"> 
+          </a>
+      </div>
+    </footer>
 
     <script src = "js/scripts.js">
         

@@ -1,12 +1,107 @@
-.TitleCard #Pokemon-Logo
-{
-    border-radius:50%;
-    width: 100px;
-    height: auto;
+:root {
+    --background-color: rgb(255, 255, 192);
+    --font-color: rgb(7, 7, 75);
 }
 
-.TitleCard #Page-Title h1
+
+
+
+
+
+
+
+
+
+body
 {
-    font-size: 24px;
+    font-family: "Source Code Pro";
+    margin: 10px 40px;
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+
+a
+{
+    text-decoration:none;
+}
+
+h1
+{
+    font-size: 30px;
     font-weight: bolder;
+}
+
+hr
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.page-grid
+{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+}
+
+.Introduction
+{
+    justify-content: left;
+    text-align: left;
+}
+
+.Introduction #Pokemon-Logo
+{
+    border-radius:50%;
+    width: 50px;
+    height: auto;
+    float:left;
+    margin: 5px;
+}
+
+.Introduction #pokemon-question
+{
+    font-weight: bold;
+}
+
+.pokemon-avatar #pokemon-name
+{
+    text-align:center;
+}
+
+.Results
+{
+    text-align: right;
+    grid-column: 3;
+}
+
+.Results p
+{
+    font-weight:bold;
+}
+
+.page-footer
+{
+    display:grid;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+}
+
+.page-footer #footer-title
+{
+    font-weight: bold;
+}
+
+.page-footer .Links
+{
+    grid-template-columns: 25% 25% 25%;
+    grid-template-rows: auto auto;
+    justify-content: center;
+}
+
+.page-footer .Links img
+{
+    width: 20px;
+    height: auto;
 }
