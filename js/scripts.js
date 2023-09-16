@@ -62,7 +62,7 @@ document.querySelector('button').addEventListener('click', () => {
         for (let i = 0; i < pokemonList.length; i++){
             if (pokemonList[i].name == currentPokemon) {
                 document.querySelector('#pokedex-number').innerText = pokemonList[i].pokedexNumber;
-                document.querySelector('#pokemon-weight').innerText = pokemonList[i].weight;
+                document.querySelector('#pokemon-weight').innerText = pokemonList[i].weight + ' lbs';
                 document.querySelector('#pokemon-type').innerText = pokemonList[i].type;
             }
         }

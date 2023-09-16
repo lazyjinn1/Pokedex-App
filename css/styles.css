@@ -42,7 +42,7 @@ hr
 .page-grid
 {
     display:grid;
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 1fr 1.5fr 1fr;
     grid-template-rows: auto auto;
 }
 
@@ -70,17 +70,26 @@ hr
 
 /* This is the second column first row. Will be a lot more important and will have the
 most amount of visual details once this is completed */
+.pokemon-avatar
+{
+    padding: 0 40px;
+}
+
 .pokemon-avatar #pokemon-Title
 {
-    text-align:center;
+    text-align:left;
 }
 
 .pokemon-avatar #pokemon-model
 {
     justify-content: center;
-    width: 1fr;
     height: auto;
-    margin: 10px 60px;
+}
+
+#pokemon-model img
+{
+    max-width:100%;
+    width: auto;
 }
 
 
