@@ -1,3 +1,4 @@
+/* basic native CSS variables */
 :root {
     --background-color: rgb(255, 255, 192);
     --font-color: rgb(7, 7, 75);
@@ -11,7 +12,7 @@
 
 
 
-
+/* basic formatting and CSS stuff */
 body
 {
     font-family: "Source Code Pro";
@@ -37,13 +38,15 @@ hr
     margin-bottom: 50px;
 }
 
+/* separates the page into three columns with the middle being the largest. 2 rows are made as well. Does not count footer */
 .page-grid
 {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto;
 }
 
+/* This is the first column, first row. Contains the introduction text, logo, and the user input formatting  */
 .Introduction
 {
     justify-content: left;
@@ -64,14 +67,27 @@ hr
     font-weight: bold;
 }
 
-.pokemon-avatar #pokemon-name
+
+/* This is the second column first row. Will be a lot more important and will have the
+most amount of visual details once this is completed */
+.pokemon-avatar #pokemon-Title
 {
     text-align:center;
 }
 
+.pokemon-avatar #pokemon-model
+{
+    justify-content: center;
+    width: 1fr;
+    height: auto;
+    margin: 10px 60px;
+}
+
+
+/* This is the third column first row and has the results for the user input in the Introductions Column */
 .Results
 {
-    text-align: right;
+    text-align: left;
     grid-column: 3;
 }
 
@@ -80,6 +96,8 @@ hr
     font-weight:bold;
 }
 
+
+/* Standard page footer stuff. is a lot smaller than my portfolio footer since its less about me and more about the app. */
 .page-footer
 {
     display:grid;

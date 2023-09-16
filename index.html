@@ -11,6 +11,7 @@
   <body>
     <div class = "page-grid">
 
+      <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
       <header class = "Introduction">
 
         <img id = "Pokemon-Logo" src = "assets/PokemonLogo.png">
@@ -22,35 +23,46 @@
         <form>
           <label>Pokemon Name:</label>
           <input id= "Pokemon" name="Pokemon" type="text">
+          <!--This button is case insensitive! Try it out! However, there are no spell-checkers on it or anything like that  -->
           <button type="button">Submit</button>
         </form>
 
       </header>
 
       <div class = "pokemon-avatar">
-        <h1 id ="pokemon-name"></h1>
+        <h1 id ="pokemon-Title"></h1>
+        <!-- Just a placeholder for now but I have plans for (ideally) 3d models here! -->
+        <div id = "pokemon-model"></div>
       </div>
 
       <div class = "Results">
         <h1>Pokemon Data</h1>
+        <!-- Shows the data of the user's inputted pokemon -->
         <p> 
-          <span id="BROKEN-pokemon-name"></span> :Pokemon Name
+          Pokemon Name: <span id ="pokemon-name"></span>
           <br>
           <br>
-          <span id="pokedex-number"></span> :Pokedex number
+          Pokedex number: <span id="pokedex-number"></span>
           <br>
           <br>
-          <span id="pokemon-weight"></span> :Weight
+          Weight: <span id="pokemon-weight"></span>
           <br>
           <br>
-          <span id="pokemon-type"></span> :Type
+          Type: <span id="pokemon-type"></span>
         </p>
+      </div>
+
+      <!-- The actual part of the CareerFoundry assignment haha -->
+      <div class = "pokemon-List">
+        <h3>All Pokemon:</h3>
+        <div class = "pokemon-entry"></div>
       </div>
 
     </div>
 
     <hr>
 
+    <!-- FOOTER -->
     <footer class = "page-footer">
       <p id = "footer-title">Follow me at</p>
       <div class = "Links">
