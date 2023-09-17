@@ -2,6 +2,8 @@
 :root {
     --background-color: rgb(255, 255, 192);
     --font-color: rgb(7, 7, 75);
+    
+    --scale-up: scale(1.2);
 }
 
 
@@ -67,6 +69,29 @@ hr
     font-weight: bold;
 }
 
+.Introduction input
+{
+    border-radius: 10% 50%;
+    height: 50px;
+    text-align: center;
+    font-weight:bolder;
+}
+
+.Introduction button
+{
+    border-radius: 10% 50%;
+    font-weight: bold;
+    background-color: blanchedalmond;
+    padding: 5px 20px;
+    transition: all .5s;
+}
+
+.Introduction button:hover
+{
+    cursor: pointer;
+    transform: var(--scale-up);
+}
+
 
 /* This is the second column first row. Will be a lot more important and will have the
 most amount of visual details once this is completed */
@@ -120,6 +145,14 @@ most amount of visual details once this is completed */
 
 .page-footer .Links img
 {
-    width: 20px;
+    width: 30px;
     height: auto;
+    transition: all .5s;
+}
+
+.page-footer .Links img:hover
+{
+    cursor: pointer;
+    transform: var(--scale-up);
+    opacity: .8;
 }
