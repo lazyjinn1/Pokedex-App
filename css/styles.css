@@ -4,6 +4,7 @@
     --font-color: rgb(7, 7, 75);
     
     --scale-up: scale(1.2);
+    --opacity-down: .8;
 }
 
 
@@ -90,6 +91,7 @@ hr
 {
     cursor: pointer;
     transform: var(--scale-up);
+    opacity: var(--opacity-down);
 }
 
 
@@ -163,5 +165,5 @@ most amount of visual details once this is completed */
 {
     cursor: pointer;
     transform: var(--scale-up);
-    opacity: .8;
+    opacity: var(--opacity-down);
 }

@@ -94,10 +94,10 @@ document.querySelector('button').addEventListener('click', () => {
         pokemonStats(pokemonList2);
 
         //This creates a picture of said pokemon. That said, it is just a placeholder for now and has no way of using the array
-        const pokemonModel = document.createElement('img');
-        pokemonModel.src = 'https://placehold.co/600x400';
-        var src = document.getElementById('pokemon-model');
-        src.appendChild(pokemonModel);
+        // const pokemonModel = document.createElement('img');
+        // pokemonModel.src = 'https://placehold.co/600x400';
+        // var src = document.getElementById('pokemon-model');
+        // src.appendChild(pokemonModel);
     }
 )
 
