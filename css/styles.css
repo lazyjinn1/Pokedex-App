@@ -44,7 +44,7 @@ hr
 .page-grid
 {
     display:grid;
-    grid-template-columns: 1fr 1.30fr 1fr;
+    grid-template-columns: 1fr 1.5fr 1fr;
     grid-template-rows: auto auto;
 }
 
