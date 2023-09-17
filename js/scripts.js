@@ -23,25 +23,26 @@ let pokemonList2 = [
 
 ];
 
-let TypeChart = [
-    {type: 'Normal', weaknesses: 'Fighting', resistances: 'N/A'},
-    {type: 'Grass', weaknesses: ['Fire','Flying','Ice','Bug','Poison'], resistances: 'N/A'},
-    {type: 'Fire', weaknesses: ['Water','Rock','Ground'], resistances: 'N/A'},
-    {type: 'Water', weaknesses: ['Electric','Grass'], resistances: 'N/A'},
-    {type: 'Electric', weaknesses: 'Ground', resistances: 'N/A'},
-    {type: 'Flying', weaknesses: ['Rock','Electric','Ice'], resistances: 'N/A'},
-    {type: 'Rock', weaknesses: ['Grass', 'Water', 'Ground', 'Steel', 'Fighting'], resistances: 'N/A'},
-    {type: 'Ground', weaknesses: ['Grass', 'Water', 'Ice'], resistances: 'N/A'},
-    {type: 'Ghost', weaknesses: ['Ghost', 'Dark'], resistances: 'N/A'},
-    {type: 'Bug', weaknesses: ['Fire', 'Flying', 'Rock',], resistances: 'N/A'},
-    {type: 'Psychic', weaknesses: ['Bug', 'Ghost', 'Dark'], resistances: 'N/A'},
-    {type: 'Dark', weaknesses: ['Fighting', 'Bug'], resistances: 'N/A'},
-    {type: 'Fairy', weaknesses: ['Poison', 'Steel'], resistances: 'N/A'},
-    {type: 'Dragon', weaknesses: ['Dragon', 'Fairy'], resistances: 'N/A'},
-    {type: 'Steel', weaknesses: ['Fire', 'Fighting', 'Ground'], resistances: 'N/A'},
-    {type: 'Ice', weaknesses: ['Fighting', 'Fire', 'Steel'], resistances: 'N/A'},
-    {type: 'Poison', weaknesses: ['Psychic', 'Ground'] ,resistances: 'N/A'}
-]
+//PROTOTYPE
+// let TypeChart = [
+//     {type: 'Normal', weaknesses: 'Fighting', resistances: 'N/A'},
+//     {type: 'Grass', weaknesses: ['Fire','Flying','Ice','Bug','Poison'], resistances: 'N/A'},
+//     {type: 'Fire', weaknesses: ['Water','Rock','Ground'], resistances: 'N/A'},
+//     {type: 'Water', weaknesses: ['Electric','Grass'], resistances: 'N/A'},
+//     {type: 'Electric', weaknesses: 'Ground', resistances: 'N/A'},
+//     {type: 'Flying', weaknesses: ['Rock','Electric','Ice'], resistances: 'N/A'},
+//     {type: 'Rock', weaknesses: ['Grass', 'Water', 'Ground', 'Steel', 'Fighting'], resistances: 'N/A'},
+//     {type: 'Ground', weaknesses: ['Grass', 'Water', 'Ice'], resistances: 'N/A'},
+//     {type: 'Ghost', weaknesses: ['Ghost', 'Dark'], resistances: 'N/A'},
+//     {type: 'Bug', weaknesses: ['Fire', 'Flying', 'Rock',], resistances: 'N/A'},
+//     {type: 'Psychic', weaknesses: ['Bug', 'Ghost', 'Dark'], resistances: 'N/A'},
+//     {type: 'Dark', weaknesses: ['Fighting', 'Bug'], resistances: 'N/A'},
+//     {type: 'Fairy', weaknesses: ['Poison', 'Steel'], resistances: 'N/A'},
+//     {type: 'Dragon', weaknesses: ['Dragon', 'Fairy'], resistances: 'N/A'},
+//     {type: 'Steel', weaknesses: ['Fire', 'Fighting', 'Ground'], resistances: 'N/A'},
+//     {type: 'Ice', weaknesses: ['Fighting', 'Fire', 'Steel'], resistances: 'N/A'},
+//     {type: 'Poison', weaknesses: ['Psychic', 'Ground'] ,resistances: 'N/A'}
+// ]
 
 //This code checks for when the user clicks the button then executes the following code when the user does.
 document.querySelector('button').addEventListener('click', () => {
@@ -77,7 +78,15 @@ document.querySelector('button').addEventListener('click', () => {
                 //     document.querySelector('#pokedex-number').innerText = 'ERROR. POKEMON IS NOT IN DATABASE.';
                 //     document.querySelector('#pokemon-weight').innerText = 'ERROR. POKEMON IS NOT IN DATABASE.';
                 //     document.querySelector('#pokemon-type').innerText = 'ERROR. POKEMON IS NOT IN DATABASE.';
-                // }
+                }
+            }
+
+        //This writes down the pokemon's pokedex #, weight
+        for (let i = 0; i < pokemonList.length; i++){
+            if (pokemonList[i].name == currentPokemon) {
+                document.querySelector('#pokedex-number').innerText = pokemonList[i].pokedexNumber;
+                document.querySelector('#pokemon-weight').innerText = pokemonList[i].weight + ' lbs';
+                document.querySelector('#pokemon-type').innerText = pokemonList[i].type;
             }
         }
 
