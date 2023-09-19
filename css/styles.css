@@ -9,12 +9,6 @@
 
 
 
-
-
-
-
-
-
 /* basic formatting and CSS stuff */
 body
 {
@@ -110,7 +104,7 @@ most amount of visual details once this is completed */
 .pokemon-avatar #pokemon-model
 {
     justify-content: center;
-    height: auto;
+    height: 550px;
 }
 
 #pokemon-model img
