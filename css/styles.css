@@ -48,6 +48,7 @@ hr
 {
     justify-content: left;
     text-align: left;
+    
 }
 
 .Introduction #Pokemon-Logo
@@ -104,7 +105,7 @@ most amount of visual details once this is completed */
 .pokemon-avatar #pokemon-model
 {
     justify-content: center;
-    height: 550px;
+    height: 300px;
 }
 
 #pokemon-model img
