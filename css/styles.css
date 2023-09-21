@@ -2,9 +2,14 @@
 :root {
     --background-color: rgb(255, 255, 192);
     --font-color: rgb(7, 7, 75);
+    --header-color: black;
     
     --scale-up: scale(1.2);
     --opacity-down: .8;
+
+    --pokedex-boxes-borderRadius: 50% 20% / 10% 40%;;
+    --pokedex-boxes-bgColor: red;
+    --pokedex-boxes-textColor: whitesmoke;
 }
 
 
@@ -22,14 +27,21 @@ body
 main{
     display:grid;
     grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: auto auto;
+    grid-template-rows: auto;
 }
 
 @media (max-width: 800px){
     main{
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto;
+        grid-template-rows: auto auto;
         width: 80%;
+    }
+}
+
+@media (max-width: 500px){
+    main{
+        grid-template-columns: 1fr;
+        width: 50%;
     }
 }
 
@@ -41,8 +53,12 @@ a
 
 h1
 {
-    font-size: 30px;
+    font-size: 150%;
     font-weight: bolder;
+    font-family: "Archivo Black";
+    color: var(--header-color);
+    -webkit-text-stroke-width: .5px;
+    -webkit-text-stroke-color: red;
 }
 
 hr
@@ -56,8 +72,7 @@ hr
 {
     justify-content: left;
     text-align: left;
-    padding: 20px;
-    
+    font-weight: 800;
 }
 
 .Introduction #Pokemon-Logo
@@ -66,18 +81,20 @@ hr
     width: 50px;
     height: auto;
     float:left;
-    margin: 5px;
 }
 
 .Introduction #pokemon-question
 {
     font-weight: bold;
+    color: var(--header-color);
 }
 
 .Introduction input
 {
     border-radius: 10% 50%;
-    height: 50px;
+    height: 100px;
+    font-size: 130%;
+    padding: 0;
     text-align: center;
     font-weight:bolder;
 }
@@ -109,24 +126,39 @@ most amount of visual details once this is completed */
 .pokemon-avatar #pokemon-Title
 {
     text-align:center;
+    font-size: 50px;
+    position: absolute;
+    color: var(--header-color);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+    top: 20px;
+    left: 50%;
 }
 
 .pokemon-avatar #pokemon-model
 {
     justify-content: center;
     height: 300px;
+    margin-bottom: 100px;
 }
 
 #pokemon-model img
 {
     max-width:100%;
-    width: auto;
+    width: 100%;
 }
 
 @media (max-width: 800px){
     .pokemon-avatar{
-        grid-column-start: 1 / 3;
+        grid-column-start: span 2;
         grid-row-start: 2;
+        
+    }
+    #pokemon-model img{
+        margin-bottom: 20px;
+    }   
+    .pokemon-avatar #pokemon-Title{
+        top: 350px;
     }
 }
 
@@ -134,41 +166,74 @@ most amount of visual details once this is completed */
 /* This has the results for the user input in the Introductions Column */
 .Results
 {
-    text-align: left;
+    text-align: right;
     grid-column: 3;
-    padding: 40px;
 }
 
 .Results p
 {
-    font-weight:bold;
+    font-weight:800;
+    font-size: 110%;
 }
 
 @media (max-width: 800px){
     .Results{
         grid-column-start: 2;
         grid-row-start: 1;
-        width: 80%;
         text-align: right;
     }
 }
 
 /* This is the list portion of the website */
-.pokemon-list{
-    padding: 40px;
+.pokemon-List{
+    display: inline-flex;
+    flex-direction: column;
+    flex-basis: auto;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+    align-items: center;
+
     margin: 20px 40px;
-    grid-column-start: 1 / 3;
+
 }
 
-.pokemon-list .pokemon-entry p{
-    padding: 5px 20px;
-    background-color: aqua;
+.pokemon-List h1 {
+    text-align: center;
 }
 
-.pokemon-list .pokemon-entry:hover{
+.pokemon-entry button{
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+    justify-content: center;
+
+    background-color: var(--pokedex-boxes-bgColor);
+    color: var(--pokedex-boxes-textColor);
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(41, 40, 40);
+
+    border-radius: var(--pokedex-boxes-borderRadius);
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+    box-shadow: 10px 5px 5px black;
+
+    width: .33333fr;
+    font-weight:bold;
+    font-size: 125%;    
+    font-family: "Archivo Black";
+
+    transition: all .25s;
+}
+
+.pokemon-entry button:hover{
     cursor:pointer;
 }
 
+.pokemon-entry button:active{
+    opacity: var(--opacity-down);
+    transform: var(--scale-up);
+}
 
 /* Standard page footer stuff. is a lot smaller than my portfolio footer since its less about me and more about the app. */
 .page-footer
