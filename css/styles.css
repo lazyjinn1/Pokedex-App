@@ -18,6 +18,21 @@ body
     color: var(--font-color);
 }
 
+main{
+    display:grid;
+    grid-template-columns: 1fr 1.5fr 1fr;
+    grid-template-rows: auto auto;
+}
+
+@media (max-width: 800px){
+    main{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        width: 80%;
+    }
+}
+
+
 a
 {
     text-decoration:none;
@@ -33,22 +48,6 @@ hr
 {
     margin-top: 50px;
     margin-bottom: 50px;
-}
-
-/* separates the page into three columns with the middle being the largest. 2 rows are made as well. Does not count footer */
-.page-grid
-{
-    display:grid;
-    grid-template-columns: 1fr 1.5fr 1fr;
-    grid-template-rows: auto auto;
-}
-
-@media (max-width: 800px){
-    .page-grid{
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto auto auto;
-        width: 80%;
-    }
 }
 
 /* This is the first column, first row. Contains the introduction text, logo, and the user input formatting  */

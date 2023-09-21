@@ -1,46 +1,45 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel = "icon" href = "assets/favicon.ico">
-    <link href= "https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@1&display=swap" rel="stylesheet">
-    <link rel = "stylesheet" type = "text/css" href = "css/styles.css">
+    <link rel="icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
     <title>Pokedex</title>
   </head>
 
   <body>
-    <div class = "page-grid">
+    <main>
+<!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
+      <div class="Introduction">
+        <img id="Pokemon-Logo" src="assets/PokemonLogo.png">
+        <h1 id="Page-Title">Pokedex</h1>
 
-      <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
-      <header class = "Introduction">
-
-        <img id = "Pokemon-Logo" src = "assets/PokemonLogo.png">
-        <h1 id = "Page-Title">Pokedex</h1>
-        
         <p>Come learn about your favorite Pokemon!</p>
 
-        <p id = "pokemon-question">Who is your favorite Pokemon?</p>
+        <p id="pokemon-question">Who is your favorite Pokemon?</p>
+        
         <form>
           <label>Pokemon Name:</label>
-          <input id= "Pokemon" name="Pokemon" type="text">
-          <!--This button is case insensitive! Try it out! However, there are no spell-checkers on it or anything like that  -->
+          <input id="Pokemon" name="Pokemon" type="text">
+<!--This button is case insensitive! Try it out! However, there are no spell-checkers on it or anything like that  -->
           <button type="button">Submit</button>
         </form>
-
-      </header>
-
-      <!--This is where the pokemon's name and image will be shown-->
-      <div class = "pokemon-avatar">
-        <h1 id ="pokemon-Title"></h1>
-        <div id = "pokemon-model"></div>
       </div>
 
-      <div class = "Results">
+<!--This is where the pokemon's name and image will be shown-->
+      <div class="pokemon-avatar">
+        <h1 id="pokemon-Title"></h1>
+        <div id="pokemon-model"></div>
+      </div>
+
+      <div class="Results">
         <h1>Pokemon Data</h1>
-        <!-- Shows the data of the user's inputted pokemon -->
-        <p> 
-          Pokemon Name: <span id ="pokemon-name"></span>
+<!-- Shows the data of the user's inputted pokemon -->
+        <p>
+          Pokemon Name: <span id="pokemon-name"></span>
           <br>
           <br>
           Pokedex Number: <span id="pokedex-number"></span>
@@ -53,32 +52,32 @@
         </p>
       </div>
 
-      <!-- The actual part of the CareerFoundry assignment haha -->
-      <div class = "pokemon-List">
+<!-- The actual part of the CareerFoundry assignment haha -->
+      <div class="pokemon-List">
         <h3>All Pokemon:</h3>
-        <div class = "pokemon-entry"></div>
+        <div class="pokemon-entry"></div>
       </div>
 
-    </div>
+    </main>
 
     <hr>
 
-    <!-- FOOTER -->
-    <footer class = "page-footer">
-      <p id = "footer-title">Follow me at</p>
-      <div class = "Links">
-          <a class = "social-media" href = "https://www.GitHub.com/lazyjinn1" target="_blank">
-              <img src = "assets/github.svg" alt = "Github"> 
-          </a>
-          <a class = "social-media" href = "https://www.twitter.com" target="_blank">
-              <img src = "assets/twitter.svg" alt = "Twitter"> 
-          </a>
-          <a class = "social-media" href = "https://www.LinkedIn.com" target="_blank">
-              <img src = "assets/linkedin.svg" alt = "LinkedIn"> 
-          </a>
+<!-- FOOTER -->
+    <footer class="page-footer">
+      <p id="footer-title">Follow me at</p>
+      <div class="Links">
+        <a class="social-media" href="https://www.GitHub.com/lazyjinn1" target="_blank">
+          <img src="assets/github.svg" alt="Github">
+        </a>
+        <a class="social-media" href="https://www.twitter.com" target="_blank">
+          <img src="assets/twitter.svg" alt="Twitter">
+        </a>
+        <a class="social-media" href="https://www.LinkedIn.com" target="_blank">
+          <img src="assets/linkedin.svg" alt="LinkedIn">
+        </a>
       </div>
     </footer>
 
-    <script src = "js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
   </body>
 </html>

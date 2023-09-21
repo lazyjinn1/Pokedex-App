@@ -1,40 +1,43 @@
-// var request = new XMLHttpRequest()
-
-// request.open('GET', 'http://pokeapi.co/api/v2/pokemon/?limit=1021',true)
-// request.onload = function (){
-//     var data = JSON.parse(this.response)
-// }
-
-// data.forEach ((pokemon) => {
-//     console.log(pokemon.name)
-// })
-
-// request.send()
-
-//array which shows all of our data.
-let pokemonList = [
+let pokemonRepository = (function(){
+    let pokemonList = [
     
-    {name: 'bulbasaur', pokedexNumber: '001', weight: 15, type: ['Grass','Poison'], evolvesInto: 'ivysaur'},
-    {name: 'charmander',  pokedexNumber: '004', weight: 19, type: 'Fire', evolvesInto: 'charmeleon'},
-    {name: 'squirtle', pokedexNumber: '007', weight: 19.8, type: 'Water', evolvesInto: 'wartortle'},
-    {name: 'pikachu', pokedexNumber: '025', weight: 13, type: 'Electric', evolvesInto: 'raichu'},
-    {name: 'eevee', pokedexNumber: '133', weight: 14, type: 'Normal', evolvesInto: ['jolteon','vaporeon','flareon','umbreon','espeon','leafeon','glaceon','sylveon']},
-    {name: 'nidoking', pokedexNumber: '034', weight: 137, type: ['Poison','Ground']},
-    {name: 'nidoqueen', pokedexNumber: '031', weight: 132, type: ['Poison','Ground']}
+        {name: 'bulbasaur', pokedexNumber: '001', weight: 15, type: ['Grass','Poison'], evolvesInto: 'ivysaur'},
+        {name: 'charmander',  pokedexNumber: '004', weight: 19, type: 'Fire', evolvesInto: 'charmeleon'},
+        {name: 'squirtle', pokedexNumber: '007', weight: 19.8, type: 'Water', evolvesInto: 'wartortle'},
+        {name: 'pikachu', pokedexNumber: '025', weight: 13, type: 'Electric', evolvesInto: 'raichu'},
+        {name: 'eevee', pokedexNumber: '133', weight: 14, type: 'Normal', evolvesInto: ['jolteon','vaporeon','flareon','umbreon','espeon','leafeon','glaceon','sylveon']},
+        {name: 'nidoking', pokedexNumber: '034', weight: 137, type: ['Poison','Ground']},
+        {name: 'nidoqueen', pokedexNumber: '031', weight: 132, type: ['Poison','Ground']},
+        {name: 'chikorita', pokedexNumber: '152', weight: 14, type: 'Grass', evolvesInto: 'bayleaf'},
+        {name: 'cyndaquil',  pokedexNumber: '155', weight: 17, type: 'Fire', evolvesInto: 'quilava'},
+        {name: 'totodile', pokedexNumber: '158', weight: 21, type: 'Water', evolvesInto: 'crocanaw'},
+        {name: 'pichu', pokedexNumber: '172', weight: 4.4, type: 'Electric', evolvesInto: 'pikachu'},
+        {name: 'umbreon', pokedexNumber: '197', weight: 60, type: 'Dark'},
+        {name: 'espeon', pokedexNumber: '196', weight: 58, type: 'Psychic'},
+        {name: 'steelix', pokedexNumber: '208', weight: 885, type: ['Steel','Ground']}
+    ]
 
-];
+    function getAll(){
+        return pokemonList;
+    }
 
-let pokemonList2 = [
-    
-    {name: 'chikorita', pokedexNumber: '152', weight: 14, type: 'Grass', evolvesInto: 'bayleaf'},
-    {name: 'cyndaquil',  pokedexNumber: '155', weight: 17, type: 'Fire', evolvesInto: 'quilava'},
-    {name: 'totodile', pokedexNumber: '158', weight: 21, type: 'Water', evolvesInto: 'crocanaw'},
-    {name: 'pichu', pokedexNumber: '172', weight: 4.4, type: 'Electric', evolvesInto: 'pikachu'},
-    {name: 'umbreon', pokedexNumber: '197', weight: 60, type: 'Dark'},
-    {name: 'espeon', pokedexNumber: '196', weight: 58, type: 'Psychic'},
-    {name: 'steelix', pokedexNumber: '208', weight: 885, type: ['Steel','Ground']}
+    function add(pokemon){
+            pokemonList.push(pokemon);
+    }
 
-];
+    return {
+        getAll,
+        add
+    }
+})();
+
+//testing the add function
+pokemonRepository.add(
+    {name:'mewtwo', pokedexNumber:'150', weight: 269, type: 'Psychic'},
+);
+pokemonRepository.add(
+    {name:'mew', pokedexNumber:'151', weight: 8.8, type: 'Psychic'}
+);
 
 //This code checks for when the user clicks the button then executes the following code when the user does.
 document.querySelector('button').addEventListener('click',()=>{
@@ -42,7 +45,7 @@ document.querySelector('button').addEventListener('click',()=>{
     //function for removing the image of the pokemon so they don't infinitely stack down.
     function removePokeImage(containerDiv){
         var img = document.getElementById(containerDiv);
-        img.innerHTML = '';
+        img.innerHTML = ''; 
     }
 
     //function for adding in the pictures for pokemon
@@ -51,54 +54,55 @@ document.querySelector('button').addEventListener('click',()=>{
         pokeImage.srcset =`https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`
         var div = document.getElementById(containerDiv);
         div.appendChild(pokeImage);
+        console.log(div);
     }
 
     //This is the pokemon that is typed in the textbox
-    let PokemonInputted = document.querySelector('#Pokemon').value;
+    let pokemonInputted = document.querySelector('#Pokemon').value;
+    console.log(pokemonInputted);
 
     //This is here to make it case insensitive
-    let currentPokemon = PokemonInputted.toLowerCase();
+    let currentPokemon = pokemonInputted.toLowerCase();
+    console.log(currentPokemon);
 
     //capitalizes the pokemon's name in the title and pokedex entry
     let properCase = currentPokemon.charAt(0).toUpperCase() + currentPokemon.substring(1);
+    console.log(properCase);
 
-    //defines pokemonFound outside
+
+
+    // commenting out until I understand this
+    // const selected = list.find(item => item.name==currentPokemon)
+    // console.log(selected)
+
     var pokemonFound = false;
 
     //This function writes down the pokemon's pokedex #, weight, and type
     function pokemonStats(list){
-        for (let i = 0; i < list.length; i++){
-            if (list[i].name === currentPokemon) {
+        list.forEach(function(pkmn){
+            if (pkmn.name === currentPokemon) {
                 document.querySelector('#pokemon-name').innerText = properCase;
                 document.querySelector('#pokemon-Title').innerText = properCase;
-                document.querySelector('#pokedex-number').innerText = '#' + list[i].pokedexNumber;
-                document.querySelector('#pokemon-weight').innerText = list[i].weight + ' lbs';
-                document.querySelector('#pokemon-type').innerText = list[i].type;
+                document.querySelector('#pokedex-number').innerText = '#' + pkmn.pokedexNumber;
+                document.querySelector('#pokemon-weight').innerText = pkmn.weight + ' lbs';
+                document.querySelector('#pokemon-type').innerText = pkmn.type;
                 pokemonFound = true;
                 removePokeImage('pokemon-model');
-                createPokeImage(list[i].pokedexNumber,'pokemon-model');
+                createPokeImage(pkmn.pokedexNumber,'pokemon-model');
             }
-        }
-        
-        //This is in case any mispellings or pokemon NOT in the dataset are found.
-        for (let i = 0; i < list.length; i++){
-            if (list[i].name !== currentPokemon && pokemonFound === false){
-                document.querySelector('#pokemon-Title').innerText = 'ERROR';
+            else if (pkmn.name !== currentPokemon && pokemonFound === false){
+                document.querySelector('#pokemon-Title').innerText = currentPokemon;
                 document.querySelector('#pokemon-name').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokedex-number').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokemon-weight').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokemon-type').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 removePokeImage('pokemon-model');
             }
-        }
+        });
     }
-        //checks to see if pokemon was already found in the first array or not.
-        pokemonStats(pokemonList);
-        if (pokemonFound === false){
-            pokemonStats(pokemonList2);
-        }
-    }
-)
+    //executes Function
+    pokemonStats(pokemonRepository.getAll());
+});
 
 //variables to measure lightness and heaviness
 const lightPokemon = 20;
@@ -108,39 +112,31 @@ const insanelyHeavyPokemon = 200;
 //empty variable used as a placeholder for writing everything down onto a list form on the HTML page
 var pokemon = '';
 
-//for loop which checks for weight and gives values for each pokemons' properties
+//forEach loop which checks for weight and gives values for each pokemons' properties
 function pokedexEntry (list)
 {
-    for (let i = 0; i < list.length; i++){
-        if(list[i].weight >= insanelyHeavyPokemon){
+    list.forEach(function(pkmn){
+        if(pkmn.weight >= insanelyHeavyPokemon){
             weightChecker = '(Good luck carrying this pokemon!)';
         }
-        else if(list[i].weight > heavyPokemon){
+        else if(pkmn.weight > heavyPokemon){
             weightChecker = '(This pokemon is heavy!)';
         }
-        else if (list[i].weight < heavyPokemon && list[i].weight > lightPokemon){
+        else if (pkmn.weight < heavyPokemon && pkmn.weight > lightPokemon){
             weightChecker = '(This pokemon is average)';
         }
         else{
             weightChecker = '(This pokemon is light!)';
         }
 
-        pokemon += list[i].name.charAt(0).toUpperCase()+ list[i].name.substring(1) + weightChecker + '<br>' ;
-        pokemon += 'Pokedex Number: #' + list[i].pokedexNumber + '<br>';
-        pokemon += list[i].weight + ' lbs' + '<br>';
-        pokemon += list[i].type + '<br>' + '<br>' + '<br>';
-
-    } 
-
-//This is what actually writes down the text
-    document.querySelector('.pokemon-entry').innerHTML = pokemon
-    
+        pokemon += pkmn.name.charAt(0).toUpperCase()+ pkmn.name.substring(1) + weightChecker + '<br>' ;
+        pokemon += 'Pokedex Number: #' + pkmn.pokedexNumber + '<br>';
+        pokemon += pkmn.weight + ' lbs' + '<br>';
+        pokemon += pkmn.type + '<br>' + '<br>' + '<br>';
+        
+        //add a class name 
+        document.querySelector('.pokemon-entry').innerHTML = pokemon;
+    }); 
 }
-
-//calls both functions
-pokedexEntry(pokemonList);
-pokedexEntry(pokemonList2);
-
-
-
-
+console.log(pokemonRepository.getAll());
+pokedexEntry(pokemonRepository.getAll());
