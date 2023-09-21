@@ -72,10 +72,33 @@ let pokemonRepository = (function () {
         console.log(pkmn);
     }
 
+    var i = 0;
+
+    // function next(pkmn) {
+    //     let next = document.querySelector('.next-pokemon');
+    //     next.addEventListener('click',function(){
+    //         if(i === pkmn.length){
+    //             pkmn[i++];
+    //         }
+    //     })
+    // }
+    // function previous(pkmn) {
+    //     let previous = document.querySelector('.previous-pokemon');
+    //     previous.addEventListener('click',function(){
+    //         if(i === pkmn.length){
+    //             pkmn[i--];
+    //         }
+    //     })
+    // }
+
+
+
     return {
         getAll,
         add,
-        addPokeButton
+        addPokeButton,
+        //next,
+        //previous
     }
 })();
 
@@ -161,4 +184,3 @@ pokemonRepository.getAll().forEach(function(pkmn) {
     pokemonRepository.addPokeButton(pkmn)
 });
 
-    
