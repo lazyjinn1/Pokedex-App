@@ -14,6 +14,7 @@ body
 {
     font-family: "Source Code Pro";
     margin: 10px 40px;
+    padding: 40px;
     background-color: var(--background-color);
     color: var(--font-color);
 }
@@ -55,6 +56,7 @@ hr
 {
     justify-content: left;
     text-align: left;
+    padding: 20px;
     
 }
 
@@ -129,11 +131,12 @@ most amount of visual details once this is completed */
 }
 
 
-/* This is the third column first row and has the results for the user input in the Introductions Column */
+/* This has the results for the user input in the Introductions Column */
 .Results
 {
     text-align: left;
     grid-column: 3;
+    padding: 40px;
 }
 
 .Results p
@@ -148,6 +151,22 @@ most amount of visual details once this is completed */
         width: 80%;
         text-align: right;
     }
+}
+
+/* This is the list portion of the website */
+.pokemon-list{
+    padding: 40px;
+    margin: 20px 40px;
+    grid-column-start: 1 / 3;
+}
+
+.pokemon-list .pokemon-entry p{
+    padding: 5px 20px;
+    background-color: aqua;
+}
+
+.pokemon-list .pokemon-entry:hover{
+    cursor:pointer;
 }
 
 

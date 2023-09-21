@@ -59,6 +59,7 @@ document.querySelector('button').addEventListener('click',()=>{
         console.log(div);
     }
 
+    //function that triggers a pokemon's voice when summoned
     function playPokemonCry(pokeID){
         let pureNumber = Number(pokeID);
         var audio = new Audio(`assets/cries/${pureNumber}.wav`);
