@@ -16,11 +16,12 @@ let pokemonRepository = (function(){
         {name: 'espeon', pokedexNumber: '196', weight: 58, type: 'Psychic'},
         {name: 'steelix', pokedexNumber: '208', weight: 885, type: ['Steel','Ground']}
     ]
-
+    //returns full pokemonList
     function getAll(){
         return pokemonList;
     }
 
+    //allows you to add pokemon into the array
     function add(pokemon){
             pokemonList.push(pokemon);
     }
@@ -31,7 +32,7 @@ let pokemonRepository = (function(){
     }
 })();
 
-//testing the add function
+//testing the add function (Question for Mentor/Tutor, "Why can't I add both of them in on the same add()?")
 pokemonRepository.add(
     {name:'mewtwo', pokedexNumber:'150', weight: 269, type: 'Psychic'},
 );
@@ -56,6 +57,12 @@ document.querySelector('button').addEventListener('click',()=>{
         var div = document.getElementById(containerDiv);
         div.appendChild(pokeImage);
         console.log(div);
+    }
+
+    function playPokemonCry(pokeID){
+        let pureNumber = Number(pokeID);
+        var audio = new Audio(`assets/cries/${pureNumber}.wav`);
+        audio.play();
     }
 
     //This is the pokemon that is typed in the textbox
@@ -87,6 +94,8 @@ document.querySelector('button').addEventListener('click',()=>{
                 pokemonFound = true;
                 removePokeImage('pokemon-model');
                 createPokeImage(selected.pokedexNumber,'pokemon-model');
+                playPokemonCry(selected.pokedexNumber);
+                console.log(selected.pokedexNumber)
             }
         }
             else{
