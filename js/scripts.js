@@ -39,6 +39,7 @@ pokemonRepository.add(
     {name:'mew', pokedexNumber:'151', weight: 8.8, type: 'Psychic'}
 );
 
+
 //This code checks for when the user clicks the button then executes the following code when the user does.
 document.querySelector('button').addEventListener('click',()=>{
 
@@ -59,51 +60,48 @@ document.querySelector('button').addEventListener('click',()=>{
 
     //This is the pokemon that is typed in the textbox
     let pokemonInputted = document.querySelector('#Pokemon').value;
-    console.log(pokemonInputted);
+    //console.log(pokemonInputted);
 
     //This is here to make it case insensitive
     let currentPokemon = pokemonInputted.toLowerCase();
-    console.log(currentPokemon);
+    //console.log(currentPokemon);
 
     //capitalizes the pokemon's name in the title and pokedex entry
     let properCase = currentPokemon.charAt(0).toUpperCase() + currentPokemon.substring(1);
-    console.log(properCase);
-
-
-
-    // commenting out until I understand this
-    // const selected = list.find(item => item.name==currentPokemon)
-    // console.log(selected)
+    //console.log(properCase);
 
     var pokemonFound = false;
 
     //This function writes down the pokemon's pokedex #, weight, and type
     function pokemonStats(list){
-        list.forEach(function(pkmn){
-            if (pkmn.name === currentPokemon) {
+        const selected = list.find(item => item.name==currentPokemon)
+        if(selected){
+            if (selected.name === currentPokemon) 
+            {
+                console.log(selected)
                 document.querySelector('#pokemon-name').innerText = properCase;
                 document.querySelector('#pokemon-Title').innerText = properCase;
-                document.querySelector('#pokedex-number').innerText = '#' + pkmn.pokedexNumber;
-                document.querySelector('#pokemon-weight').innerText = pkmn.weight + ' lbs';
-                document.querySelector('#pokemon-type').innerText = pkmn.type;
+                document.querySelector('#pokedex-number').innerText = '#' + selected.pokedexNumber;
+                document.querySelector('#pokemon-weight').innerText = selected.weight + ' lbs';
+                document.querySelector('#pokemon-type').innerText = selected.type;
                 pokemonFound = true;
                 removePokeImage('pokemon-model');
-                createPokeImage(pkmn.pokedexNumber,'pokemon-model');
+                createPokeImage(selected.pokedexNumber,'pokemon-model');
             }
-            else if (pkmn.name !== currentPokemon && pokemonFound === false){
-                document.querySelector('#pokemon-Title').innerText = currentPokemon;
+        }
+            else{
+                console.log(selected)
+                document.querySelector('#pokemon-Title').innerText = properCase;
                 document.querySelector('#pokemon-name').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokedex-number').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokemon-weight').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 document.querySelector('#pokemon-type').innerText = 'ERROR. '+ currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
                 removePokeImage('pokemon-model');
             }
-        });
-    }
+    };
     //executes Function
-    pokemonStats(pokemonRepository.getAll());
+    pokemonStats(pokemonRepository.getAll());;
 });
-
 //variables to measure lightness and heaviness
 const lightPokemon = 20;
 const heavyPokemon = 80;
