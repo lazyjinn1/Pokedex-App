@@ -60,8 +60,8 @@ let pokemonRepository = (function () {
     }
 
     function showDetails(pkmn){
-        document.querySelector('#pokemon-name').innerHTML = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1) + '<br>';
-        document.querySelector('#pokemon-Title').innerHTML = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1) + '<br>';
+        document.querySelector('#pokemon-name').innerHTML = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
+        document.querySelector('#pokemon-Title').innerHTML = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
         document.querySelector('#pokedex-number').innerHTML = '#' + pkmn.pokedexNumber;
         document.querySelector('#pokemon-weight').innerHTML = pkmn.weight + ' lbs';
         document.querySelector('#pokemon-type').innerHTML = pkmn.type;
