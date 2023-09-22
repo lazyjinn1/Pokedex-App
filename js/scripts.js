@@ -56,7 +56,6 @@ let pokemonRepository = (function () {
         button.innerHTML = pokemonNameEntry + pokemonNumberEntry + pokemonWeightEntry + pokemonTypeEntry;
         button.classList.add('dex-entry');
         container.appendChild(button);
-        
     }
 
     function showDetails(pkmn){
@@ -74,31 +73,38 @@ let pokemonRepository = (function () {
 
     var i = 0;
 
-    // function next(pkmn) {
-    //     let next = document.querySelector('.next-pokemon');
+    // function nextPokemon(pkmn){
+    //     document.querySelector('#pokemon-name').innerHTML = pkmn[i++].name.charAt(0).toUpperCase() + pkmn.name.substring(1);
+    //     document.querySelector('#pokemon-Title').innerHTML = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
+    //     document.querySelector('#pokedex-number').innerHTML = '#' + pkmn.pokedexNumber;
+    //     document.querySelector('#pokemon-weight').innerHTML = pkmn.weight + ' lbs';
+    //     document.querySelector('#pokemon-type').innerHTML = pkmn.type;
+    //     document.body.scrollTop = document.documentElement.scrollTop = 0;
+    //     removePokeImage('pokemon-model');
+    //     createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
+    //     playPokemonCry(pkmn.pokedexNumber);
+    //     console.log(pkmn);
+    // }
+
+    // function addDirection(pkmn){
+    //     let nextContainer = document.querySelector('.next-pokemon');
+    //     let next = document.createElement('button')
     //     next.addEventListener('click',function(){
-    //         if(i === pkmn.length){
-    //             pkmn[i++];
-    //         }
-    //     })
-    // }
-    // function previous(pkmn) {
-    //     let previous = document.querySelector('.previous-pokemon');
-    //     previous.addEventListener('click',function(){
-    //         if(i === pkmn.length){
-    //             pkmn[i--];
-    //         }
-    //     })
+    //         nextPokemon(pkmn);
+    //     });
+    //     next.innerHTML = 'Next Pokemon';
+    //     nextContainer.appendChild(next);
     // }
 
-
+    //addDirection();
 
     return {
         getAll,
         add,
         addPokeButton,
-        //next,
-        //previous
+        // nextPokemon,
+        // previous
+        // addDirection
     }
 })();
 
@@ -110,6 +116,27 @@ pokemonRepository.add(
 pokemonRepository.add(
     { name: 'mew', pokedexNumber: '151', weight: 8.8, type: 'Psychic' }
 );
+
+// function addLeftRightButtons(pkmn){
+//     let nextContainer = document.querySelector('.next-pokemon');
+//     let next = document.createElement('button')
+//     next.addEventListener('click',function(){
+//         next(pkmn);
+//     })
+//     next.innerHTML = 'Next Pokemon';
+//     nextContainer.appendChild(next);
+
+//     let previousContainer = document.querySelector('.previous-pokemon');
+//     let previous = document.createElement('button')
+//     previous.addEventListener('click',function(){
+//         previous(pkmn);
+//     })
+//     previous.innerHTML = 'Previous Pokemon';
+//     previousContainer.appendChild(previous);
+// }
+
+// addLeftRightButtons(currentPokemon);
+
 
 //function for removing the image of the pokemon so they don't infinitely stack down.
 function removePokeImage(containerDiv) {
