@@ -204,9 +204,9 @@ most amount of visual details once this is completed */
     margin-bottom: 100px;
 }
 
-#pokemon-model img
+#pokemon-model #pokeImage
 {
-    max-width:500px;
+    max-width:700px;
     width: 100%;
 
     border-radius: 100px 100px;
@@ -215,6 +215,20 @@ most amount of visual details once this is completed */
 
     box-shadow: inset 0 -170px 20px red;
     
+    animation: fadein 2s;
+}
+
+#missingNo
+{
+    width: 80%;
+    height: auto;
+
+    border-radius: 100px 100px;
+    border-bottom: 2px solid black;
+    border-right: 4px solid black;
+
+    box-shadow: inset 0 -170px 20px red;
+
     animation: fadein 2s;
 }
 
@@ -250,9 +264,17 @@ most amount of visual details once this is completed */
         grid-column-start: span 2;
         height: 350px;
     }
+    #pokemon-model{
+        margin: 20px;
+        height: 100%;
+    }   
     #pokemon-model img{
-        height: 300px;
+        height: 400px;
         width: auto;
+    }
+    .pokemon-avatar #pokemon-Title{
+        left: 5%;
+        font-size: 38px;
     }
 }
 
@@ -276,6 +298,10 @@ most amount of visual details once this is completed */
         grid-column: span 2;
         text-align: center;
         color: white;
+        -webkit-text-stroke-width: .1px;
+        -webkit-text-stroke-color: rgb(0, 0, 0);
+        padding-right: 0;
+        font-size: 130%;
     }
 }
 
@@ -347,7 +373,7 @@ most amount of visual details once this is completed */
 @media (max-width: 800px){
     .pokemon-entry button{
         margin:5px 10px;
-        width: 100%;
+        width: 90%;
     }
     .pokemon-List{
         width: 100%;
