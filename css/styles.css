@@ -36,7 +36,7 @@ body
 
     box-sizing: border-box;
 
-    overflow: auto;
+    overflow-x: hidden;
 }
 
 main{
@@ -48,8 +48,6 @@ main{
 
     left: 10px;
     right: 10px;
-    
-    
 }
 
 @media (max-width: 800px){
@@ -269,8 +267,9 @@ most amount of visual details once this is completed */
         height: 100%;
     }   
     #pokemon-model img{
-        height: 400px;
+        height: 256px;
         width: auto;
+        padding-top: 50px;
     }
     .pokemon-avatar #pokemon-Title{
         left: 5%;
@@ -326,9 +325,19 @@ most amount of visual details once this is completed */
     -webkit-text-stroke-color: rgb(255, 255, 255);
 }
 
+.pokemon-sprites{
+    width: 80px;
+    height: auto;
+}
+
+.pokemon-entry{
+    list-style-type:none;
+    flex-flow: wrap;
+}
+
 .pokemon-entry button{
-    padding: 20px;
-    margin: 20px;
+    padding: 10px;
+    margin: 20px 30px;
     text-align: center;
     justify-content: center;
 
@@ -340,11 +349,13 @@ most amount of visual details once this is completed */
     border-radius: var(--pokedex-boxes-borderRadius);
     border-top: 5px solid black;
     border-right: 5px solid black;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
 
     box-shadow: 10px 5px 5px black;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 
-    width: 15em;
+    width: 12.5em;
 
     font-weight:bold;
     font-size: 125%;    
