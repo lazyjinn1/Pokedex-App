@@ -311,8 +311,11 @@ most amount of visual details once this is completed */
     right: 0;
     margin: 10px;
     border-radius: 50%;
+    padding: 10px;
     background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
     transition: all .5s;
+    color: black;
+    font-weight: bold;
 }
 
 .show-modal:hover{
@@ -369,8 +372,19 @@ most amount of visual details once this is completed */
 }
 
 .modal-picture{
-    width: 60%;
+    width: 40%;
     height: auto;
+    padding: 20px;
+    float:right;
+}
+
+@media (max-width: 800px){
+    .modal-picture{
+        float: bottom;
+        margin-top: 200px;
+        width: 80%;
+    }
+
 }
 
 /* This is the list portion of the website */
