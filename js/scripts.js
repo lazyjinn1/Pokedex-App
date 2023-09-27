@@ -5,6 +5,8 @@ var pokemonNumberEntry = '';
 var pokemonHeightEntry = '';
 var pokemonTypeEntry = '';
 
+
+
 let pokemonRepository = (function () {
 
     let pokemonList = [];
@@ -73,13 +75,13 @@ let pokemonRepository = (function () {
                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1);
             }
             //console.log(pkmn.type);  
-
-            //scrolls to the top when a button is clicked
             document.body.scrollTop = document.documentElement.scrollTop = 0;
 
             removePokeImage('pokemon-model');
             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
             playPokemonCry(pkmn.pokedexNumber);
+
+            showModal(pkmnNameProperCase, pkmn.height, pkmn.pokedexNumber);
         });
     }
 
@@ -114,37 +116,76 @@ let pokemonRepository = (function () {
         })
     }
 
-    //CURRENTLY BROKEN
-    // function pokemonStats(pkmn) {
-    //     loadDetails(pkmn).then(function(){
-    //         const selected= pkmn.find(item => item.name == currentPokemon)
-    //         if (selected) {
-    //             if (selected.name === currentPokemon) {
-    //                 console.log(selected)
-    //                 alert('success');
-    //                 document.querySelector('#pokemon-name').innerHTML = properCase;
-    //                 document.querySelector('#pokemon-Title').innerHTML = properCase;
-    //                 document.querySelector('#pokedex-number').innerHTML = '#' + pkmn.pokedexNumber;
-    //                 document.querySelector('#pokemon-height').innerHTML = pkmn.height;
-    //                 document.querySelector('#pokemon-type').innerHTML = pkmn.types;
-    //                 removePokeImage('pokemon-model');
-    //                 createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
-    //                 playPokemonCry(pkmn.pokedexNumber);
-    //                 console.log(pkmn.pokedexNumber);
-    //             }
-    //         }
-    //         else {
-    //             alert(selected);
-    //             document.querySelector('#pokemon-Title').innerText = 'missingNo';
-    //             document.querySelector('#pokemon-name').innerText = 'ERROR. ' + currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
-    //             document.querySelector('#pokedex-number').innerText = 'ERROR. ' + currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
-    //             document.querySelector('#pokemon-height').innerText = 'ERROR. ' + currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
-    //             document.querySelector('#pokemon-type').innerText = 'ERROR. ' + currentPokemon.toUpperCase() + ' IS NOT IN DATABASE.';
-    //             removePokeImage('pokemon-model');
-    //             missingNo('pokemon-model');
-    //         }
-    //     });
-    //}
+
+    function showModal(title, text, pokeID) {
+        let modalContainer = document.querySelector('#modal-container');
+      
+        // Clear all existing modal content
+        modalContainer.innerHTML = '';
+      
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+      
+        // Add the new modal content
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('close-modal');
+        closeButtonElement.innerText = 'Close Modal';
+        closeButtonElement.addEventListener('click', hideModal);
+
+        //this closes when user presses Escape
+        window.addEventListener('keydown', (e) => {
+            let modalContainer = document.querySelector('#modal-container');
+            if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+              hideModal();  
+            }
+        });
+        //this closes when user clicks outside window
+        modalContainer.addEventListener('click', (e) => {
+            let target = e.target;
+            if (target === modalContainer) {
+              hideModal();
+            }
+        });
+
+        //this adds the picture to the modal
+        if (pokeID > 99) {
+            pokeID;
+        }
+        else if (pokeID <= 99 && pokeID >= 10) {
+            pokeID = '0' + pokeID;
+        }
+        else {
+            pokeID = '00' + pokeID;
+        }
+        let pictureElement = document.createElement('img')
+        pictureElement.src = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`
+        pictureElement.classList.add('modal-picture');
+
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = title;
+      
+        let contentElement = document.createElement('p');
+        contentElement.innerText = text;
+      
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modal.appendChild(pictureElement);
+        modalContainer.appendChild(modal);
+
+        modalContainer.classList.add('is-visible');
+    }
+
+    function hideModal() {
+        let modalContainer = document.querySelector('#modal-container');
+        modalContainer.classList.remove('is-visible');
+    }
+
+    document.querySelector('.show-modal').addEventListener('click', () => {
+        showModal('Modal title', 'This is the modal content!');
+    });
+
+    
 
     return {
         getAll,
@@ -153,7 +194,9 @@ let pokemonRepository = (function () {
         loadList,
         loadDetails,
         showDetails,
-        //pokemonStats
+        //pokemonStats,
+        showModal,
+        hideModal,
     }
 })();
 
@@ -197,8 +240,7 @@ function missingNo(containerDiv) {
     missingNo.setAttribute('id', 'missingNo');
 }
 
-// CURRENTLY BROKEN
-// //This code checks for when the user clicks the button then executes the following code when the user does.
+//This code checks for when the user clicks the button then executes the following code when the user does.
 // document.querySelector('button').addEventListener('click', () => {
 //     //This is the pokemon that is typed in the textbox
 //     let pokemonInputted = document.querySelector('#Pokemon').value;
@@ -208,8 +250,10 @@ function missingNo(containerDiv) {
 //     //capitalizes the pokemon's name in the title and pokedex entry
 //     let properCase = currentPokemon.charAt(0).toUpperCase() + currentPokemon.substring(1);
 
-//     pokemonRepository.loadList(pkmn).then(function() {
-//         pokemonRepository.pokemonStats(pokemonRepository.getAll(),currentPokemon);
+//     pokemonRepository.loadList(currentPokemon).then(function() {
+//         pokemonRepository.loadDetails(currentPokemon).then(function(){
+//             pokemonRepository.pokemonStats(pokemonRepository.getAll(),currentPokemon);
+//         })
 //     })
 
 //     return properCase;

@@ -304,6 +304,75 @@ most amount of visual details once this is completed */
     }
 }
 
+/* Modal CSS Settings */
+.show-modal{
+    display:fixed;
+    top: 0;
+    right: 0;
+    margin: 10px;
+    border-radius: 50%;
+    background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
+    transition: all .5s;
+}
+
+.show-modal:hover{
+    cursor:pointer;
+    transform: var(--scale-up);
+    opacity: var(--opacity-down);
+}
+
+#modal-container {
+    display: none;
+}
+
+#modal-container.is-visible{
+    position: fixed;
+    padding: 20px;
+    box-sizing: border-box;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.5);
+
+    z-index: 9999;
+
+    display:grid;
+    text-align: center;
+}
+
+.modal{
+    margin: auto;
+    padding: 20px;
+    display: inline-block;
+    width: 80%;
+    height: 80%;
+    background-image: linear-gradient(black, pink, pink,black);
+}
+
+.modal p{
+    text-align: left;
+    font-weight: bold;
+}
+
+.modal .modal-close{
+    right: 0;
+    justify-content: right;
+    text-decoration:none;
+    font-weight: bolder;
+    color: white;
+    font-size: 150%;
+}
+
+.modal .modal-close:hover{
+    cursor:pointer;  
+}
+
+.modal-picture{
+    width: 60%;
+    height: auto;
+}
+
 /* This is the list portion of the website */
 .pokemon-List{
     display: inline;
