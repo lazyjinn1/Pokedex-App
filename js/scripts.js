@@ -81,7 +81,7 @@ let pokemonRepository = (function () {
             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
             playPokemonCry(pkmn.pokedexNumber);
             document.querySelector('.show-modal').addEventListener('click', () => {
-                showModal(pkmnNameProperCase, pkmn.height, pkmn.pokedexNumber);
+                showModal(pkmnNameProperCase, 'Height: ' + pkmn.height/10 + ' m', pkmn.pokedexNumber);
             });
             
         });
@@ -240,7 +240,7 @@ function missingNo(containerDiv) {
     missingNo.setAttribute('id', 'missingNo');
 }
 
-//This code checks for when the user clicks the button then executes the following code when the user does.
+// //This code checks for when the user clicks the button then executes the following code when the user does.
 // document.querySelector('button').addEventListener('click', () => {
 //     //This is the pokemon that is typed in the textbox
 //     let pokemonInputted = document.querySelector('#Pokemon').value;
@@ -252,7 +252,7 @@ function missingNo(containerDiv) {
 
 //     pokemonRepository.loadList(currentPokemon).then(function() {
 //         pokemonRepository.loadDetails(currentPokemon).then(function(){
-//             pokemonRepository.pokemonStats(pokemonRepository.getAll(),currentPokemon);
+//             pokemonRepository.pokemonStats(pokemonRepository.getAll());
 //         })
 //     })
 

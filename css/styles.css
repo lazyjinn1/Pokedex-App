@@ -326,6 +326,7 @@ most amount of visual details once this is completed */
 
 #modal-container {
     display: none;
+    animation: fadein 1s;
 }
 
 #modal-container.is-visible{
@@ -351,6 +352,8 @@ most amount of visual details once this is completed */
     width: 80%;
     height: 80%;
     background-image: linear-gradient(black, pink, pink,black);
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
 }
 
 .modal p{
