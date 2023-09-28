@@ -267,10 +267,4 @@ if(searchButton){
         }
     });
 }
-else {
-    searchButton.addEventListener('click', function() 
-    {
-        missingNo('pokemon-model');
-    });
-}
 
