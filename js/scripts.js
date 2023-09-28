@@ -1,11 +1,3 @@
-//empty variables used as placeholders for writing everything down onto a list form on the HTML page
-var pokemonNameEntry = '';
-var pokemonImgEntry = '';
-var pokemonNumberEntry = '';
-var pokemonHeightEntry = '';
-var pokemonTypeEntry = '';
-
-
 
 let pokemonRepository = (function () {
 
@@ -32,14 +24,18 @@ let pokemonRepository = (function () {
     //returns data about pokemon. Used in combination with for each to display all information about a pokemon needed.
     function loadDetails(pkmn) {
         let url = pkmn.detailsUrl;
-        return fetch(url).then(function (response) {
+        return fetch(url)
+        .then(function (response) 
+        {
             return response.json();
-        }).then(function (details) {
+        }).then(function (details) 
+        {
             pkmn.imageUrl = details.sprites.front_default;
             pkmn.height = details.height;
             pkmn.pokedexNumber = details.id;
             pkmn.type = details.types;
-        }).catch(function (e) {
+        }).catch(function (e) 
+        {
             console.error(e);
         });
     }
@@ -183,8 +179,54 @@ let pokemonRepository = (function () {
         modalContainer.classList.remove('is-visible');
     }
 
-    
 
+
+    // PLEASE HELP NO IDEA HOW TO FIX THIS 
+    // (function searchPokemon(list, pkmn)
+    // {
+    //     //This is the pokemon that is typed in the textbox
+    //     let pokemonInputted = document.querySelector('#Pokemon').value;
+
+    //     let currentPokemon = pokemonInputted.toLowerCase();
+
+    //     const selected = list.find(pkmn => pkmn.name==currentPokemon)
+        
+    //     if (currentPokemon === selected)
+    //     {
+    //         loadDetails(selected).then(function () {
+    //             let pkmnNameProperCase = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
+
+    //             document.querySelector('#pokemon-name').innerHTML = pkmnNameProperCase;
+    //             document.querySelector('#pokemon-Title').innerHTML = pkmnNameProperCase;
+    //             document.querySelector('#pokedex-number').innerHTML = '#' + pkmn.pokedexNumber;
+    //             document.querySelector('#pokemon-height').innerHTML = pkmn.height/10 + ' m';
+    //             if (pkmn.type.length > 1) {
+    //                 document.querySelector('#pokemon-type').innerHTML = 
+    //                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1)
+    //                     + ' and ' +
+    //                     pkmn.type[1].type.name.charAt(0).toUpperCase() + pkmn.type[1].type.name.substring(1);
+
+    //             }
+    //             else {
+    //                 document.querySelector('#pokemon-type').innerHTML = 
+    //                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1);
+    //             }
+
+    //             removePokeImage('pokemon-model');
+    //             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
+    //             playPokemonCry(pkmn.pokedexNumber);
+    //             document.querySelector('.show-modal').addEventListener('click', () => {
+    //                 showModal(pkmnNameProperCase, 'Height: ' + pkmn.height/10 + ' m', pkmn.pokedexNumber);
+    //             });
+    //         });
+    //     }
+
+    //     else {
+    //         missingNo('pokemon-model');
+    //     }
+    //     //This code checks for when the user clicks the button then executes the following code when the user does.
+    //     document.querySelector('#Submit').addEventListener('click', searchPokemon(getAll(),pkmn))
+    // }());
     
 
     return {
@@ -194,9 +236,9 @@ let pokemonRepository = (function () {
         loadList,
         loadDetails,
         showDetails,
-        //pokemonStats,
         showModal,
         hideModal,
+        //searchPokemon
     }
 })();
 
@@ -239,26 +281,6 @@ function missingNo(containerDiv) {
     div.appendChild(missingNo);
     missingNo.setAttribute('id', 'missingNo');
 }
-
-// //This code checks for when the user clicks the button then executes the following code when the user does.
-// document.querySelector('button').addEventListener('click', () => {
-//     //This is the pokemon that is typed in the textbox
-//     let pokemonInputted = document.querySelector('#Pokemon').value;
-
-//     //This is here to make it case insensitive
-//     let currentPokemon = pokemonInputted.toLowerCase();
-//     //capitalizes the pokemon's name in the title and pokedex entry
-//     let properCase = currentPokemon.charAt(0).toUpperCase() + currentPokemon.substring(1);
-
-//     pokemonRepository.loadList(currentPokemon).then(function() {
-//         pokemonRepository.loadDetails(currentPokemon).then(function(){
-//             pokemonRepository.pokemonStats(pokemonRepository.getAll());
-//         })
-//     })
-
-//     return properCase;
-// });
-
 
 //forEach loop which checks for height and gives values for each pokemons' properties
 pokemonRepository.loadList().then(function () {
