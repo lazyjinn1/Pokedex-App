@@ -447,6 +447,8 @@ most amount of visual details once this is completed */
     font-size: 125%;    
     font-family: "Archivo Black";
 
+    z-index: 1000;
+
     transition: all .25s;
 }
 
