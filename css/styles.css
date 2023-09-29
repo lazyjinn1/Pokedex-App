@@ -296,10 +296,15 @@ most amount of visual details once this is completed */
         grid-column: span 2;
         text-align: center;
         color: white;
-        -webkit-text-stroke-width: .5px;
+        -webkit-text-stroke-width: .7px;
         -webkit-text-stroke-color: black;
         
         padding-right: 0;
+    }
+
+    .Results p{
+        font-weight: 500;
+        font-size: 150%;
     }
 }
 
