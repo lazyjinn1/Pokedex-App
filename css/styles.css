@@ -190,6 +190,7 @@ button:active{
 most amount of visual details once this is completed */
 .pokemon-avatar{
     height: 500px;
+    max-height: 100%;
     width: 100%;
 }
 
@@ -218,9 +219,8 @@ most amount of visual details once this is completed */
 
 #pokemon-model .pokeImage
 {
-    max-width:700px;
-    width: 95%;
-    height: 95%;
+    width: 100%;
+    height: auto;
 
     border-radius: 100px 100px;
     border-bottom: 2px solid black;
@@ -248,7 +248,8 @@ most amount of visual details once this is completed */
     }
     #pokemon-model{
         margin: 50px;
-        height: 100%;
+        height: auto;
+        width: auto;
     }   
     .pokemon-avatar #pokemon-Title{
         margin-right: 40px;
@@ -328,15 +329,16 @@ most amount of visual details once this is completed */
 
 /* Modal CSS Settings */
 .show-modal, .randomizer{
-    display:fixed;
     top: 0;
     right: 0;
     margin: 10px;
     border-radius: 50%;
-    padding: 10px;
-    background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
+    padding: 15px 23px;
+    background-image: linear-gradient(skyblue,blue,skyblue);
+    border: 2px solid black;
     transition: all .5s;
-    color: black;
+    color: white;
+    font-size: 18px;
 }
 
 .show-modal:hover, .randomizer:hover{
@@ -351,6 +353,13 @@ most amount of visual details once this is completed */
 
 .randomizer{
     float: right;
+}
+
+@media(max-width: 400px){
+    .show-modal{
+        float: none;
+        margin: 5px 0;
+    }
 }
 
 
@@ -450,8 +459,9 @@ most amount of visual details once this is completed */
     white-space: pre-wrap;
     padding: 20px 40px;
 
-    height: auto;
     width: 50%;
+    height: auto;
+    
 
     background-image: linear-gradient(rgb(134, 36, 69),white,white, white, rgb(134, 36, 69));
 
@@ -470,9 +480,51 @@ most amount of visual details once this is completed */
     }
 }
 
+@media(min-width:2000px){
+    .modal h1{
+        font-size: 80px;
+    }
+    .modal h2{
+        font-size: 60px;
+    }
+    .modal p{
+        font-size: 50px;
+    }
+}
+
+@media(max-width:1600px){
+    .modal h1{
+        font-size: 55px;
+    }
+    .modal h2{
+        font-size: 45px;
+    }
+    .modal p{
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 1200px){
+    modal-picture{
+        width: 80%;
+        height: auto;
+        float: right;
+    }
+
+    .modal h1{
+        font-size: 45px;
+    }
+    .modal h2{
+        font-size: 30px;
+    }
+    .modal p{
+        font-size: 20px;
+    }
+}
+
 @media (max-width: 800px){
     .modal h1{
-        font-size:40px;
+        font-size:35px;
     }
 
     .modal h2{
@@ -484,6 +536,7 @@ most amount of visual details once this is completed */
 
     .modal-picture{
         width: 100%;
+        height: auto;
     }
 
     .close-modal{
@@ -492,6 +545,7 @@ most amount of visual details once this is completed */
 
     .modal-content{
         width: 100%;
+        height: auto;
         max-height: 100%;
         margin: 0;
         padding-top: 20px;
@@ -518,13 +572,14 @@ most amount of visual details once this is completed */
 } */
 
 .pokemon-List{
-    display: inline;
+    display: flex;
     flex-direction: column;
     flex-basis: auto;
     flex-wrap: wrap;
     flex-grow: 1;
     flex-shrink: 1;
     align-items: center;
+    padding: 0;
 }
 
 .pokemon-List h1 {
@@ -544,12 +599,12 @@ most amount of visual details once this is completed */
 }
 
 .pokemon-entry{
-    flex-flow: wrap;
+    flex-flow: nowrap;
 }
 
 .pokemon-entry button{
-    padding: 10px;
-    margin: 20px 30px;
+    padding: 5px;
+    margin: 10px 15px;
     text-align: center;
 
     background-color: var(--pokedex-boxes-bgColor);
