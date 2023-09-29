@@ -389,7 +389,8 @@ most amount of visual details once this is completed */
     font-size: 30px;
     float:left;
     margin-left: 200px;
-    font-weight: bold;
+    font-family:fantasy;
+    letter-spacing: 5px;
 }
 
 .close-modal{
@@ -461,6 +462,13 @@ most amount of visual details once this is completed */
         font-size:40px;
     }
 
+    .modal h2{
+        font-size: 20px;
+        text-align: center;
+        margin: 0;
+        float:none;
+    }
+
     .modal-picture{
         width: 100%;
     }
@@ -471,20 +479,20 @@ most amount of visual details once this is completed */
 
     .modal-content{
         width: 100%;
-        height: 50%;
+        max-height: 100%;
         margin: 0;
-        padding-top: 30px;
-        padding-bottom: 30px;
+        padding-top: 20px;
+        padding-bottom: 20px;
         font-weight: bold;
     }
 
     @keyframes typing
 {
     from {
-        height: 0;
+        max-height: 0;
     }
     to{
-        height: 50%;
+        max-height: 100%;
     }
 }
 
