@@ -125,7 +125,6 @@ let pokemonRepository = (function () {
             playPokemonCry(pkmn.pokedexNumber);
             document.querySelector('.show-modal').addEventListener('click', () => {
                 showModal(pkmnNameProperCase, pokemonGenusEntry, pkmnEntryFixed, pkmn.pokedexNumber);
-                buttonSound();
             });
         });
     }
@@ -145,7 +144,6 @@ let pokemonRepository = (function () {
         closeButtonElement.innerText = ' X ';
         closeButtonElement.addEventListener('click', () => {
             hideModal();
-            exitSound();
         });
         
 
@@ -154,7 +152,6 @@ let pokemonRepository = (function () {
             let modalContainer = document.querySelector('#modal-container');
             if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
                 hideModal();
-                exitSound();
             }
         });
         //this closes when user clicks outside window
@@ -162,7 +159,6 @@ let pokemonRepository = (function () {
             let target = e.target;
             if (target === modalContainer) {
                 hideModal();
-                exitSound();
             }
         });
 
@@ -196,6 +192,7 @@ let pokemonRepository = (function () {
         modal.appendChild(contentElement);
         modal.appendChild(pictureElement);
         modalContainer.appendChild(modal);
+        buttonSound();
 
         modalContainer.classList.add('is-visible');
     }
@@ -204,6 +201,7 @@ let pokemonRepository = (function () {
     function hideModal() {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
+        exitSound();
     }
 
     // function removepokeButtons(){
