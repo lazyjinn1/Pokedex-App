@@ -24,14 +24,20 @@ let pokemonRepository = (function () {
     //returns data about pokemon. Used in combination with for each to display all information about a pokemon needed.
     function loadDetails(pkmn) {
         let url = pkmn.detailsUrl;
-        return fetch(url)
-            .then(function (response) {
-                return response.json();
+        return fetch(url).then(function (response) {
+            return response.json();
             }).then(function (details) {
                 pkmn.imageUrl = details.sprites.front_default;
                 pkmn.height = details.height;
                 pkmn.pokedexNumber = details.id;
                 pkmn.type = details.types;
+                pkmn.speciesUrl = details.species.url;
+                return fetch (pkmn.speciesUrl).then(function(response){
+                        return response.json();
+                    }).then(function(details1){
+                        pkmn.pkdxTitle = details1.genera;
+                        pkmn.pkdxEntry = details1.flavor_text_entries[0].flavor_text;
+                    })
             }).catch(function (e) {
                 console.error(e);
             });
@@ -50,6 +56,8 @@ let pokemonRepository = (function () {
     //Used in combination with loadDetails. This is the "effect" of clicking one of the buttons on the pokeList
     function showDetails(pkmn) {
         loadDetails(pkmn).then(function () {
+            let pkmnEntryFixed = pkmn.pkdxEntry.replace(/(\n|\f)/gm," ");
+
             let pkmnNameProperCase = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
             //console.log(pkmn.name);
             document.querySelector('#pokemon-name').innerHTML = pkmnNameProperCase;
@@ -74,11 +82,13 @@ let pokemonRepository = (function () {
             //console.log(pkmn.type);  
             document.body.scrollTop = document.documentElement.scrollTop = 0;
 
+
+
             removePokeImage('pokemon-model');
             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
             playPokemonCry(pkmn.pokedexNumber);
             document.querySelector('.show-modal').addEventListener('click', () => {
-                showModal(pkmnNameProperCase, 'Height: ' + pkmn.height / 10 + ' m', pkmn.pokedexNumber);
+                showModal(pkmnNameProperCase, pkmnEntryFixed, pkmn.pokedexNumber);
             });
         });
     }
@@ -127,7 +137,7 @@ let pokemonRepository = (function () {
         // Add the new modal content
         let closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('close-modal');
-        closeButtonElement.innerText = 'Close Modal';
+        closeButtonElement.innerText = ' X ';
         closeButtonElement.addEventListener('click', hideModal);
 
         //this closes when user presses Escape
@@ -164,6 +174,11 @@ let pokemonRepository = (function () {
 
         let contentElement = document.createElement('p');
         contentElement.innerText = text;
+        contentElement.classList.add('modal-content');
+
+        let buttonSound = new Audio(`assets/beep.mp3`)
+        buttonSound.play();
+        buttonSound.volume = .5;
 
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
@@ -177,7 +192,14 @@ let pokemonRepository = (function () {
     function hideModal() {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
+        var errorSound = new Audio(`assets/error.mp3`);
+        errorSound.play();
+        errorSound.volume = .3;
     }
+
+    // function removepokeButtons(){
+    //     $("ul li").removeClass( "dex-entry" ).addClass( "removed" );
+    // }
 
     return {
         getAll,
@@ -188,6 +210,7 @@ let pokemonRepository = (function () {
         showDetails,
         showModal,
         hideModal,
+        //removepokeButtons
     }
 })();
 
@@ -221,6 +244,7 @@ function playPokemonCry(pokeID) {
     let pureNumber = Number(pokeID);
     var pokeCry = new Audio(`assets/cries/${pureNumber}.wav`);
     pokeCry.play();
+    pokeCry.volume = .7;
 }
 
 
@@ -240,31 +264,54 @@ function missingNo(input,containerDiv) {
     var div = document.getElementById(containerDiv);
     div.appendChild(missingNo);
 
-    document.querySelector('#pokemon-name').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AVAILABLE';
+    var errorSound = new Audio(`assets/error.mp3`);
+    errorSound.play();
+    errorSound.volume = .3;
+
+    document.querySelector('#pokemon-name').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AN AVAILABLE POKEMON';
     document.querySelector('#pokemon-Title').innerHTML = 'MissingNo.';
-    document.querySelector('#pokedex-number').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AVAILABLE';
-    document.querySelector('#pokemon-height').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AVAILABLE';
-    document.querySelector('#pokemon-type').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AVAILABLE';
+    document.querySelector('#pokedex-number').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AN AVAILABLE POKEMON';
+    document.querySelector('#pokemon-height').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AN AVAILABLE POKEMON';
+    document.querySelector('#pokemon-type').innerHTML = 'ERROR '+ input.toUpperCase() + ' IS NOT AN AVAILABLE POKEMON';
 }
 
 //adds an event listener to the search button using filters to find the pokemon
 var searchButton = document.getElementById('search');
 if(searchButton){
     searchButton.addEventListener('click', function() 
-    {
+    {   
         var searchInput = document.getElementById('search-input').value;
-        var pokemonList = pokemonRepository.getAll();
-        var filteredPokemonList = pokemonList.filter(function(pkmn) 
-        {
-            return pkmn.name.toLowerCase().includes(searchInput.toLowerCase());
-        });
-        if (filteredPokemonList.length === 0) {
+        if (searchInput === ""){
             missingNo(searchInput,'pokemon-model');
-        } else {
-            filteredPokemonList.forEach(function(pkmn) {
-                pokemonRepository.showDetails(pkmn);
+        }
+        else{
+            var pokemonList = pokemonRepository.getAll();
+            var filteredPokemonList = pokemonList.filter(function(pkmn) 
+            {
+                return pkmn.name.toLowerCase().includes(searchInput.toLowerCase());
             });
+            if (filteredPokemonList.length === 0) {
+                missingNo(searchInput,'pokemon-model');
+            } else {
+                filteredPokemonList.forEach(function(pkmn) {
+                    pokemonRepository.showDetails(pkmn);
+                });
+            }
         }
     });
 }
+
+// function generationOneFilter(pkmn){
+//     return pkmn.pokedexNumber > 0 && pkmn.pokedexNumber < 152;
+// }
+
+// function generationOne(pkmn){
+//     pokemonRepository.removepokeButtons();
+//     var pokemonList = pokemonRepository.getAll();
+//     var genOneList = pokemonList.filter(generationOne(pkmn))
+//     genOneList.forEach(function(pkmn) {
+//         pokemonRepository.addPokeButton(pkmn);
+//     });
+// }
+
 
