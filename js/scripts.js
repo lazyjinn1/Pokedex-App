@@ -18,7 +18,7 @@ let pokemonRepository = (function () {
             });
         }).catch(function (e) {
             console.error(e);
-        })
+        });
     }
 
     
@@ -42,7 +42,7 @@ let pokemonRepository = (function () {
                         
                         pkmn.pkdxTitle = filteredTitleText[0].genus;
                         pkmn.pkdxEntry = filteredFlavorText[0].flavor_text;
-                    })
+                    });
             }).catch(function (e) {
                 console.error(e);
             });
@@ -60,7 +60,7 @@ let pokemonRepository = (function () {
        //writes down the pokemon in an order as buttons
     function addPokeButton(pkmn) {
         loadDetails(pkmn).then(function () {
-            pokemonNameEntry = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
+            let pokemonNameEntry = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
             //console.log(pkmn.pokedexNumber);
 
             let container = document.querySelector('.pokemon-entry');
@@ -73,7 +73,7 @@ let pokemonRepository = (function () {
             img.classList.add('pokemon-sprites');
 
             if (pokemonNameEntry.indexOf('-') === -1) {
-                button.innerText = pokemonNameEntry
+                button.innerText = pokemonNameEntry;
             }
             else {
                 button.innerText = pokemonNameEntry.slice(0, pokemonNameEntry.indexOf('-'));
@@ -84,8 +84,9 @@ let pokemonRepository = (function () {
             document.querySelector('button');
             button.addEventListener('click', function () {
                 showDetails(pkmn);
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
-        })
+        });
     }
 
     //Used in combination with loadDetails. This is the "effect" of clicking one of the buttons on the pokeList
@@ -116,10 +117,6 @@ let pokemonRepository = (function () {
             }
 
             //console.log(pkmn.type);  
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
-
-
-
             removePokeImage('pokemon-model');
             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
             playPokemonCry(pkmn.pokedexNumber);
@@ -130,6 +127,7 @@ let pokemonRepository = (function () {
     }
 
     function showModal(title, genus, text, pokeID) {
+        Sound('beep');
         let modalContainer = document.querySelector('#modal-container');
 
         // Clear all existing modal content
@@ -157,7 +155,7 @@ let pokemonRepository = (function () {
         //this closes when user clicks outside window
         modalContainer.addEventListener('click', (e) => {
             let target = e.target;
-            if (target === modalContainer) {
+            if (target === modalContainer && modalContainer.classList.contains('is-visible')) {
                 hideModal();
             }
         });
@@ -172,8 +170,8 @@ let pokemonRepository = (function () {
         else {
             pokeID = '00' + pokeID;
         }
-        let pictureElement = document.createElement('img')
-        pictureElement.src = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`
+        let pictureElement = document.createElement('img');
+        pictureElement.src = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`;
         pictureElement.classList.add('modal-picture');
 
         let titleElement = document.createElement('h1');
@@ -192,7 +190,6 @@ let pokemonRepository = (function () {
         modal.appendChild(contentElement);
         modal.appendChild(pictureElement);
         modalContainer.appendChild(modal);
-        buttonSound();
 
         modalContainer.classList.add('is-visible');
     }
@@ -201,7 +198,7 @@ let pokemonRepository = (function () {
     function hideModal() {
         let modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
-        exitSound();
+        Sound('exit');
     }
 
     // function removepokeButtons(){
@@ -218,7 +215,7 @@ let pokemonRepository = (function () {
         showModal,
         hideModal,
         //removepokeButtons
-    }
+    };
 })();
 
 //function for removing the image of the pokemon so they don't infinitely stack down.
@@ -239,7 +236,7 @@ function createPokeImage(pokeID, containerDiv) {
     else {
         pokeID = '00' + pokeID;
     }
-    pokeImage.srcset = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`
+    pokeImage.srcset = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`;
     var div = document.getElementById(containerDiv);
     div.appendChild(pokeImage);
     pokeImage.setAttribute('class', 'pokeImage');
@@ -251,34 +248,23 @@ function playPokemonCry(pokeID) {
     let pureNumber = Number(pokeID);
     var pokeCry = new Audio(`assets/cries/${pureNumber}.wav`);
     pokeCry.play();
-    pokeCry.volume = .7;
+    pokeCry.volume = 0.7;
 }
 
-//general button sound
-function buttonSound(){
-    let buttonSound = new Audio(`assets/beep.mp3`)
-    buttonSound.play();
-    buttonSound.volume = .5;
-}
-
-//general error sound. Tbh doesn't really sound like an error but oh well.
-function exitSound(){
-    var exitSound = new Audio(`assets/exit.mp3`);
-    exitSound.play();
-    exitSound.volume = .3;
-}
-
-function errorSound(){
-    var errorSound = new Audio(`assets/error.mp3`);
-    errorSound.play();
-    errorSound.volume = .5;
+function Sound(file){
+    var sound = new Audio(`assets/${file}.mp3`)
+    sound.play();
+    sound.volume = 0.1;
+    if (sound.currentTime === 0){
+        sound.remove();
+    }
 }
 
 //forEach loop which checks for height and gives values for each pokemons' properties
 pokemonRepository.loadList().then(function () {
     pokemonRepository.getAll().forEach(function (pkmn) {
-        pokemonRepository.addPokeButton(pkmn)
-    })
+        pokemonRepository.addPokeButton(pkmn);
+    });
 });
 
 //function that triggers missingNo to appear if the search is invalid
@@ -305,7 +291,7 @@ if(searchButton){
         var searchInput = document.getElementById('search-input').value;
         if (searchInput === ""){
             missingNo(searchInput,'pokemon-model');
-            errorSound();
+            Sound('error');
         }
         else{
             var pokemonList = pokemonRepository.getAll();
@@ -315,7 +301,7 @@ if(searchButton){
             });
             if (filteredPokemonList.length === 0) {
                 missingNo(searchInput,'pokemon-model');
-                errorSound();
+                Sound('error');
             } else {
                 filteredPokemonList.forEach(function(pkmn) {
                     pokemonRepository.showDetails(pkmn);
@@ -332,7 +318,7 @@ if(searchButton){
         var random = pokemonRepository.getAll()[Math.floor(Math.random()*pokemonRepository.getAll().length)];
         console.log(random.name);
         pokemonRepository.showDetails(random);
-    })
+    });
 }());
 
 
