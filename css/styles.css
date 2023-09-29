@@ -183,6 +183,12 @@ button:active{
         grid-column: span 2;
         text-align: center;
     }
+
+    .Introduction input{
+        font-size: 100%;
+        width: 80%;
+    }
+
 }
 
 
@@ -278,6 +284,8 @@ most amount of visual details once this is completed */
 }
 
 
+
+
 /* This has the results for the user input in the Introductions Column */
 .Results
 {
@@ -355,10 +363,9 @@ most amount of visual details once this is completed */
     float: right;
 }
 
-@media(max-width: 400px){
-    .show-modal{
-        float: none;
-        margin: 5px 0;
+@media (max-width:250px){
+    .show-modal, .randomizer{
+        padding: 5px 15px;
     }
 }
 
@@ -480,7 +487,19 @@ most amount of visual details once this is completed */
     }
 }
 
-@media(min-width:2000px){
+@media(width > 2400px){
+    .modal h1{
+        font-size: 100px;
+    }
+    .modal h2{
+        font-size: 70px;
+    }
+    .modal p{
+        font-size: 60px;
+    }
+}
+
+@media(max-width:2400px){
     .modal h1{
         font-size: 80px;
     }
@@ -492,15 +511,27 @@ most amount of visual details once this is completed */
     }
 }
 
-@media(max-width:1600px){
+@media(max-width:2000px){
     .modal h1{
-        font-size: 55px;
+        font-size: 60px;
     }
     .modal h2{
-        font-size: 45px;
+        font-size: 40px;
     }
     .modal p{
         font-size: 30px;
+    }
+}
+
+@media(max-width:1600px){
+    .modal h1{
+        font-size: 45px;
+    }
+    .modal h2{
+        font-size: 35px;
+    }
+    .modal p{
+        font-size: 25px;
     }
 }
 
@@ -512,7 +543,7 @@ most amount of visual details once this is completed */
     }
 
     .modal h1{
-        font-size: 45px;
+        font-size: 40px;
     }
     .modal h2{
         font-size: 30px;
@@ -532,6 +563,10 @@ most amount of visual details once this is completed */
         text-align: center;
         margin: 0;
         float:none;
+    }
+
+    .modal p{
+        font-size: 15px;
     }
 
     .modal-picture{
