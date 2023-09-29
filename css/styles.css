@@ -295,16 +295,22 @@ most amount of visual details once this is completed */
     .Results{
         grid-column: span 2;
         text-align: center;
-        color: white;
-        -webkit-text-stroke-width: .7px;
-        -webkit-text-stroke-color: black;
+        color: black;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: white;
+        font-weight: 1000;
+        font-family: "Archivo Black";
         
         padding-right: 0;
     }
 
+    .Results h1{
+        font-size: 30px;
+        -webkit-text-stroke-width: 1.5px;
+    }
+
     .Results p{
-        font-weight: 500;
-        font-size: 150%;
+        font-size: 20px;
     }
 }
 
@@ -524,8 +530,8 @@ most amount of visual details once this is completed */
 
     z-index:0;
 
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: rgb(255, 255, 255);
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color:red;
 }
 
 .pokemon-sprites{
@@ -596,6 +602,11 @@ most amount of visual details once this is completed */
         flex-direction: row;
         align-content: center;
     }
+
+    .pokemon-List h1{
+        font-size:30px;
+    }
+    
 }
 
 /* Standard page footer stuff. is a lot smaller than my portfolio footer since its less about me and more about the app. */
