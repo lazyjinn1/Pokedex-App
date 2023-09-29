@@ -20,8 +20,7 @@
 body
 {
     width: 100%;
-
-    font-family: "Source Code Pro";
+    font-family: "Lilita One";
     font-style: normal;
     
     padding: 10px;
@@ -285,10 +284,20 @@ most amount of visual details once this is completed */
     padding-right: 50px;
 }
 
+.Results h1{
+    font-size: 150%;
+    color: white;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
 .Results p
 {
     font-weight:800;
-    font-size: 110%;
+    font-size: 125%;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: rgb(0, 0, 0);
 }
 
 @media (max-width: 800px){
@@ -306,16 +315,18 @@ most amount of visual details once this is completed */
 
     .Results h1{
         font-size: 30px;
-        -webkit-text-stroke-width: 1.5px;
+        color: black;
+        -webkit-text-stroke-color: red;
     }
 
     .Results p{
         font-size: 20px;
+        color: white;
     }
 }
 
 /* Modal CSS Settings */
-.show-modal{
+.show-modal, .randomizer{
     display:fixed;
     top: 0;
     right: 0;
@@ -325,34 +336,22 @@ most amount of visual details once this is completed */
     background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
     transition: all .5s;
     color: black;
-    font-weight: bold;
 }
 
-.show-modal:hover{
+.show-modal:hover, .randomizer:hover{
     cursor:pointer;
     transform: var(--scale-up);
     opacity: var(--opacity-down);
+}
+
+.show-model:active, .randomizer:active{
+    transform: var(--scale-norm);
 }
 
 .randomizer{
-    display:fixed;
     float: right;
-    top: 0;
-    left: 0;
-    margin: 10px;
-    border-radius: 50%;
-    padding: 10px;
-    background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
-    transition: all .5s;
-    color: black;
-    font-weight: bold;
 }
 
-.randomizer:hover{
-    cursor:pointer;
-    transform: var(--scale-up);
-    opacity: var(--opacity-down);
-}
 
 #modal-container {
     display: none;
@@ -402,6 +401,9 @@ most amount of visual details once this is completed */
     margin-left: 200px;
     font-family:fantasy;
     letter-spacing: 5px;
+
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: white;
 }
 
 .close-modal{
@@ -441,7 +443,6 @@ most amount of visual details once this is completed */
 
     text-align: left;
     font-size: 20px;
-    font-weight: bold;
 
     animation: typing 2s;
 
@@ -510,9 +511,9 @@ most amount of visual details once this is completed */
 }
 
 /* This is the list portion of the website */
-.removed{
+/* .removed{
     display: none;
-}
+} */
 
 .pokemon-List{
     display: inline;
@@ -530,8 +531,9 @@ most amount of visual details once this is completed */
 
     z-index:0;
 
+    color: white;
     -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color:red;
+    -webkit-text-stroke-color:black;
 }
 
 .pokemon-sprites{

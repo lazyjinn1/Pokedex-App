@@ -145,7 +145,7 @@ let pokemonRepository = (function () {
         closeButtonElement.innerText = ' X ';
         closeButtonElement.addEventListener('click', () => {
             hideModal();
-            errorSound();
+            exitSound();
         });
         
 
@@ -154,7 +154,7 @@ let pokemonRepository = (function () {
             let modalContainer = document.querySelector('#modal-container');
             if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
                 hideModal();
-                errorSound();
+                exitSound();
             }
         });
         //this closes when user clicks outside window
@@ -162,7 +162,7 @@ let pokemonRepository = (function () {
             let target = e.target;
             if (target === modalContainer) {
                 hideModal();
-                errorSound();
+                exitSound();
             }
         });
 
@@ -264,10 +264,16 @@ function buttonSound(){
 }
 
 //general error sound. Tbh doesn't really sound like an error but oh well.
+function exitSound(){
+    var exitSound = new Audio(`assets/exit.mp3`);
+    exitSound.play();
+    exitSound.volume = .3;
+}
+
 function errorSound(){
     var errorSound = new Audio(`assets/error.mp3`);
     errorSound.play();
-    errorSound.volume = .3;
+    errorSound.volume = .5;
 }
 
 //forEach loop which checks for height and gives values for each pokemons' properties
@@ -311,6 +317,7 @@ if(searchButton){
             });
             if (filteredPokemonList.length === 0) {
                 missingNo(searchInput,'pokemon-model');
+                errorSound();
             } else {
                 filteredPokemonList.forEach(function(pkmn) {
                     pokemonRepository.showDetails(pkmn);
