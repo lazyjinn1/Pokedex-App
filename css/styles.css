@@ -323,6 +323,26 @@ most amount of visual details once this is completed */
     opacity: var(--opacity-down);
 }
 
+.randomizer{
+    display:fixed;
+    float: right;
+    top: 0;
+    left: 0;
+    margin: 10px;
+    border-radius: 50%;
+    padding: 10px;
+    background-image: linear-gradient(maroon, brown, pink, rgb(168, 112, 7));
+    transition: all .5s;
+    color: black;
+    font-weight: bold;
+}
+
+.randomizer:hover{
+    cursor:pointer;
+    transform: var(--scale-up);
+    opacity: var(--opacity-down);
+}
+
 #modal-container {
     display: none;
     animation: fadein 1s;
@@ -363,6 +383,13 @@ most amount of visual details once this is completed */
     font-size:55px;
     -webkit-text-stroke-width: 0.5px;
     -webkit-text-stroke-color: white;
+}
+
+.modal h2{
+    font-size: 30px;
+    float:left;
+    margin-left: 200px;
+    font-weight: bold;
 }
 
 .close-modal{
