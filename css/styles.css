@@ -14,34 +14,6 @@
     --pokedex-boxes-textColor: whitesmoke;
 }
 
-
-/* Bootstrap CSS */
-.navbar{
-    background-image:linear-gradient(to right, red, black, red );
-    border-radius: 20px;
-    color: black;
-    margin: 0 40px 10px 40px;
-    padding: 5px 10px;
-    width: 20%;
-    float: right;
-}
-
-.navbar .nav-brand{
-    float:right;
-}
-
-@media (max-width: 800px)
-{
-    .navbar{
-        width: 80%;
-    }
-
-    .navbar .nav-brand{
-        font-size: 80%;
-    }
-    
-}
-
 /* basic formatting and CSS stuff */
 body
 {
