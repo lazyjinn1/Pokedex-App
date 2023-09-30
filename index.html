@@ -1,18 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang = "en">
 
 <head>
+  <!-- common char set -->
   <meta charset="utf-8">
+
+  <!-- mobile formatting -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- pokemon favicon -->
   <link rel="icon" href="assets/favicon.ico">
+
+  <!-- loading bootstrap -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- loading all 3 of these font-families -->
   <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital@1&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Source+Code+Pro:ital@1&display=swap"
     rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="css/styles.css">
+
+  <!-- loading CSS styles -->
+  <link rel="stylesheet" type="text/css" href="dist/styles.css">
+
+  <!-- loaded this because I was having issues with github pages not letting me load properly -->
   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+
   <title>Pokedex</title>
 </head>
 
@@ -20,38 +34,50 @@
   <main>
     <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
     <div class="Introduction">
-      <img class = "img-fluid" id="Pokemon-Logo" src="assets/PokemonLogo.png">
+      <img id="Pokemon-Logo" src="assets/PokemonLogo.png" alt = "pokeball">
       <h1 id="Page-Title">Pokedex</h1>
 
       <p>Come learn about your favorite Pokemon!</p>
 
       <p id="pokemon-question">Who is your favorite Pokemon?</p>
 
+      <!-- Main search function -->
       <form>
         <label>Pokemon Name:</label>
         <input id="search-input" name="Pokemon" type="text" maxlength="20" placeholder="Type Pokemon Here">
-        <!--This button is case insensitive! Try it out! However, there are no spell-checkers on it or anything like that  -->
+        <!--This button is case insensitive! Try it out!-->
         <button type= "button" id = "search">Search</button>
       </form>
     </div>
 
-    <!--This is where the pokemon's name and image will be shown-->
+    <!--This is where the pokemon's name and image are shown-->
     <div class="pokemon-avatar">
+
+      <!-- this is the show modal/show more details button -->
       <button class = "show-modal" data-toggle="modal" >+<span class="sr-only"></span></button>
+
+      <!-- this is the randomize pokemon button -->
       <button class = "randomizer">?</button>
+
+      <!-- the pokemon's name -->
       <h1 id="pokemon-Title"></h1>
+
+      <!-- the pokemon's image -->
       <div id="pokemon-model"></div>
     </div>
 
 
-    <!-- This is where the Modal is going to be -->
+    <!-- This is where the Modal shows up and directs to -->
     <div id = "modal-container">
+      <!-- Using JS, this will contain more info about the pokemon -->
     </div>
     
 
+    <!-- Shows the data of the the given Pokemon-->
     <div class="Results">
       <h1>Pokemon Data</h1>
-      <!-- Shows the data of the user's inputted pokemon -->
+
+      <!-- this is where the pokemons' various details are going to be listed -->
       <p id = "pokemon-details">
         Pokemon Name: <span id="pokemon-name"></span>
         <br>
@@ -69,7 +95,7 @@
 
   
 
-  <!-- The actual part of the CareerFoundry assignment haha -->
+  <!-- The pokemon list that comprises 649 pokemon -->
   <div class="pokemon-List">
     <h1>Full Pokedex:</h1>
     <ul class="list-group"></ul>
@@ -94,20 +120,23 @@
     </div>
   </footer>
 
-  
+  <!-- loading JQuery -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" 
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" 
   crossorigin="anonymous"></script>
 
+  <!-- loading Popper -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" 
   integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" 
   crossorigin="anonymous"></script>
 
+  <!-- loading Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" 
   integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" 
   crossorigin="anonymous"></script>
 
-  <script src= "js/scripts.js"></script>
+  <!-- loading scripts.js -->
+  <script src= "dist/scripts.js"></script>
 
 </body>
 
