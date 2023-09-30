@@ -1,6 +1,7 @@
 //IIFE that contains most of the pokemonRepository functions
 var pokemonRepository = (function () {
 
+    //this is my main array. It starts empty but is filled in using a combination of loadlist() and add()
     var pokemonList = [];
     var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=649';
 
@@ -48,6 +49,7 @@ var pokemonRepository = (function () {
             pkmn.height = details.height;
             pkmn.pokedexNumber = details.id;
             pkmn.type = details.types;
+            //Lines 53-61 is there because I needed to filter out the english pokemon 'genus' and 'flavor_texts' for my modal
             pkmn.speciesUrl = details.species.url;
             return fetch(pkmn.speciesUrl).then(function (response) {
                 return response.json();
@@ -63,6 +65,17 @@ var pokemonRepository = (function () {
         });
     }
 
+    function generationCheck(pkmn, a,b){
+        loadDetails(pkmn).then(function(){
+            pokemonList.filter((pkmn)=>(pkmn.pokedexNumber >= a && pkmn.pokedexNumber <= b)); 
+            return pokemonList[0].id; 
+        })
+    };
+
+    console.log(pokemonList.id);
+
+    generationCheck(1,151);
+
     //returns full pokemonList
     function getAll() {
         return pokemonList;
@@ -77,67 +90,83 @@ var pokemonRepository = (function () {
         loadDetails(pkmn).then(function () {
             var pokemonNameEntry = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
             var container = document.querySelector('.list-group');
+
+            //creating new elements
             var li = document.createElement('li');
             var button = document.createElement('button');
             var img = document.createElement('img');
 
-            pokemonList.sort((a, b) => a.pokedexNumber - b.pokedexNumber);
+            //This is the source I used for the sprites
+            img.src = pkmn.imageUrl;
 
-            img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pkmn.pokedexNumber}.png`;
-
+            //adding classes to my newly created elements
             li.classList.add('list-group-item');
-            button.classList.add('btn-primary');
+            button.classList.add('dex-entry');
             img.classList.add('pokemon-sprites');
 
+            //This is how I cut off the '-' off of some pokemon's names (eg. Landorus-Incarnate) 
+            //and only display their actual name
             if (pokemonNameEntry.indexOf('-') === -1) {
                 button.innerText = pokemonNameEntry;
             }
             else {
                 button.innerText = pokemonNameEntry.slice(0, pokemonNameEntry.indexOf('-'));
             }
+
+            //sticking everything together!
             button.appendChild(img);
             li.appendChild(button);
             container.appendChild(li);
 
+            //adding an event to the newly created button
             document.querySelector('button');
             button.addEventListener('click', function () {
                 showDetails(pkmn);
+                //this automatically scrolls to the top so that you don't have to scroll to the top yourself.
                 document.body.scrollTop = document.documentElement.scrollTop = 0;
             });
         });
     }
 
-    //Used in combination with loadDetails. This is the "effect" of clicking one of the buttons on the pokeList
+    //Used in combination with loadDetails. This is the main function of the app. Details pokemon
     function showDetails(pkmn) {
         loadDetails(pkmn).then(function () {
+
+            //This is because for some reason there are random arrows and line breaks in the flavor text
             var pkmnEntryFixed = pkmn.pkdxEntry.replace(/(\n|\f)/gm, " ");
+
+            //simply adds 'The' before the pokemon's genus
             var pokemonGenusEntry = 'The ' + pkmn.pkdxTitle;
 
+            //Capitalizes every pokemon's name
             var pkmnNameProperCase = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
             //console.log(pkmn.name);
-            document.querySelector('#pokemon-name').innerHTML = pkmnNameProperCase;
-            document.querySelector('#pokemon-Title').innerHTML = pkmnNameProperCase;
-            document.querySelector('#pokedex-number').innerHTML = '#' + pkmn.pokedexNumber;
-            document.querySelector('#pokemon-height').innerHTML = pkmn.height / 10 + ' m';
+            document.querySelector('#pokemon-name').innerText = pkmnNameProperCase;
+            document.querySelector('#pokemon-Title').innerText = pkmnNameProperCase;
+            document.querySelector('#pokedex-number').innerText = '#' + pkmn.pokedexNumber;
+            document.querySelector('#pokemon-height').innerText = pkmn.height / 10 + ' m';
 
-
-
+            //If a pokemon has more than 1 type, this writes down both types.
             if (pkmn.type.length > 1) {
-                document.querySelector('#pokemon-type').innerHTML =
+                document.querySelector('#pokemon-type').innerText =
                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1)
                     + ' and ' +
                     pkmn.type[1].type.name.charAt(0).toUpperCase() + pkmn.type[1].type.name.substring(1);
             }
 
+            //if it only has one, then it only writes the first (and only) type.
             else {
-                document.querySelector('#pokemon-type').innerHTML =
+                document.querySelector('#pokemon-type').innerText =
                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1);
             }
 
-            //console.log(pkmn.type);  
+            //this removes any potential images still present in the app from a previous entry
             removePokeImage('pokemon-model');
+            //this creates a new pokemon image based on the new pokemon and where it shows
             createPokeImage(pkmn.pokedexNumber, 'pokemon-model');
+            //this plays a distinct pokemon cry
             playPokemonCry(pkmn.pokedexNumber);
+            //this adds a function to the show modal button which displays more info about the pokemon
             document.querySelector('.show-modal').addEventListener('click', () => {
                 showModal(pkmnNameProperCase, pokemonGenusEntry, pkmnEntryFixed, pkmn.pokedexNumber);
             });
@@ -146,6 +175,8 @@ var pokemonRepository = (function () {
 
     //function for when the modal pops up.
     function showModal(title, genus, text, pokeID) {
+
+        //quick little beep sound effect to showcase opening modal
         Sound(beep);
         var modalContainer = document.querySelector('#modal-container');
 
@@ -155,7 +186,7 @@ var pokemonRepository = (function () {
         var modal = document.createElement('div');
         modal.classList.add('modal');
 
-        // Add the new modal content
+        // This is the button that closes the modal for me
         var closeButtonElement = document.createElement('button');
         closeButtonElement.classList.add('close-modal');
         closeButtonElement.innerText = ' X ';
@@ -166,7 +197,6 @@ var pokemonRepository = (function () {
 
         //this closes when user presses Escape
         window.addEventListener('keydown', (e) => {
-            var modalContainer = document.querySelector('#modal-container');
             if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
                 hideModal();
             }
@@ -179,7 +209,8 @@ var pokemonRepository = (function () {
             }
         });
 
-        //this adds the picture to the modal
+        //this adds the picture to the modal. This if-else statement is there because the pokemon source is written
+        //with 3 digit notation (e.g. 003 instead of 3 like in pokeAPI). so it's there to fulfill that.
         if (pokeID > 99) {
             pokeID;
         }
@@ -189,6 +220,8 @@ var pokemonRepository = (function () {
         else {
             pokeID = '00' + pokeID;
         }
+
+        //lets create some elements!!!
         var pictureElement = document.createElement('img');
         pictureElement.src = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`;
         pictureElement.classList.add('modal-picture');
@@ -203,6 +236,7 @@ var pokemonRepository = (function () {
         contentElement.innerText = text;
         contentElement.classList.add('modal-content');
 
+        //NOW LETS STICK EVERYTHING TOGETHER
         modal.appendChild(closeButtonElement);
         modal.appendChild(titleElement);
         modal.appendChild(genusElement);
@@ -210,10 +244,11 @@ var pokemonRepository = (function () {
         modal.appendChild(pictureElement);
         modalContainer.appendChild(modal);
 
+        //Now modal is visible!
         modalContainer.classList.add('is-visible');
     }
 
-    //function to hide the modal
+    //function to hide the modal- Goodbye Modal
     function hideModal() {
         var modalContainer = document.querySelector('#modal-container');
         modalContainer.classList.remove('is-visible');
@@ -221,6 +256,7 @@ var pokemonRepository = (function () {
     }
 
 
+    //RETURN ALL THE THINGS.
     return {
         getAll,
         add,
@@ -231,6 +267,7 @@ var pokemonRepository = (function () {
         showModal,
         hideModal,
         Sound,
+        generationCheck,
         error,
         beep,
         exit,
@@ -243,7 +280,8 @@ function removePokeImage(containerDiv) {
     img.innerHTML = '';
 }
 
-//function for adding in the pictures for pokemon
+//function for adding in the pictures for pokemon. 
+//This is the same URL as the one on the showModal so thats why its here again
 function createPokeImage(pokeID, containerDiv) {
     var pokeImage = document.createElement('img');
     if (pokeID > 99) {
@@ -258,10 +296,13 @@ function createPokeImage(pokeID, containerDiv) {
     pokeImage.srcset = `https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/${pokeID}.png`;
     var div = document.getElementById(containerDiv);
     div.appendChild(pokeImage);
+
+    //gives pokeImage, the class = 'pokeImage', I know unique right?
     pokeImage.setAttribute('class', 'pokeImage');
 }
 
 //function that triggers a pokemon's voice when summoned
+//pureNumber is called because this one WANTS pure number notation, so it wants '1' and not 001.
 function playPokemonCry(pokeID) {
     var pureNumber = Number(pokeID);
     var pokeCry = new Audio(`assets/cries/${pureNumber}.wav`);
@@ -296,23 +337,33 @@ function missingNo(input, containerDiv) {
 var searchButton = document.getElementById('search');
 if (searchButton) {
     searchButton.addEventListener('click', function () {
+        //searchInput is whatever you write into the text box in the intro!
         var searchInput = document.getElementById('search-input').value;
+        //if search input is empty then missingNo comes out and error sound plays
         if (searchInput === "") {
             missingNo(searchInput, 'pokemon-model');
             pokemonRepository.Sound(pokemonRepository.error);
         }
+        //if alls well and you actually wrote something then we go through this!
         else {
+            //we retrieve the main pokemon array, pokemonRepository.getAll() and call it pokemonList
             var pokemonList = pokemonRepository.getAll();
+            //we then filter said list so that we only return pokemon that have the same name as our search!
             var filteredPokemonList = pokemonList.filter(function (pkmn) {
                 return pkmn.name.toLowerCase().includes(searchInput.toLowerCase());
             });
+            //Now if that filtered array is 0 (because the filter couldn't find any pokemon), then missingNo will come back
             if (filteredPokemonList.length === 0) {
                 missingNo(searchInput, 'pokemon-model');
                 pokemonRepository.Sound(pokemonRepository.error);
+                
             } else {
+                //If the filter DID find a pokemon then this will show the details of said
                 filteredPokemonList.forEach(function (pkmn) {
                     pokemonRepository.showDetails(pkmn);
                 });
+
+                //after a new pokemon is spawned, the search input is reset back to empty.
                 document.getElementById('search-input').value = '';
             }
         }
@@ -327,12 +378,14 @@ $('#search-input').keypress(function (event) {
     }
 });
 
-//creates a button that randomizes the current pokemon. Have fun!
+//creates a button that randomizes the current pokemon. Have fun! This is a self-sufficient function btw
 (function randomButton() {
     var randomButton = document.querySelector('.randomizer');
     randomButton.addEventListener('click', function () {
+        //This works by calling our main array, pokemonRepository.getAll(), and making it multiple the length of it by 
+        //Math.random which calls a random number between 0 and 1. Math.floor rounds down the answer, which 
+        //calls the random pokemon as a showDetails.
         var random = pokemonRepository.getAll()[Math.floor(Math.random() * pokemonRepository.getAll().length)];
-        console.log(random.name);
         pokemonRepository.showDetails(random);
     });
 }());
