@@ -14,6 +14,46 @@
     --pokedex-boxes-textColor: whitesmoke;
 }
 
+/* CSS for Bootstrap stuff */
+.navbar{
+    background-image:linear-gradient(to right, red, black, red );
+    border-radius: 20px;
+    color: black;
+    margin: 0 40px 10px 40px;
+    padding: 5px 10px;
+    width: 20%;
+    float: right;
+}
+
+.navbar .nav-brand{
+    float:right;
+}
+
+@media (max-width: 800px)
+{
+    .navbar{
+        width: 80%;
+    }
+
+    .navbar .nav-brand{
+        font-size: 80%;
+    }
+    
+}
+
+/* loading   */
+.spinner-grow{
+    position: absolute;
+    z-index: 9999;
+    left: 40%;
+    top: 50%;
+    width: 200px;
+    height: 200px;
+    color: white;
+    text-align: center;
+}
+
+
 /* basic formatting and CSS stuff */
 body
 {
