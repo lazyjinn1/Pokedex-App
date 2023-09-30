@@ -90,7 +90,7 @@ var pokemonRepository = (function () {
 
             //adding classes to my newly created elements
             li.classList.add('list-group-item');
-            button.classList.add('btn-primary');
+            button.classList.add('dex-entry');
             img.classList.add('pokemon-sprites');
 
             //This is how I cut off the '-' off of some pokemon's names (eg. Landorus-Incarnate) 

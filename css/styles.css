@@ -254,8 +254,6 @@ button:active{
         
     }
     #pokemon-model .pokeImage{
-        width: 100px;
-        height: 100px;
         left:30%;
     }   
     .pokemon-avatar #pokemon-Title{
@@ -714,13 +712,22 @@ button:active{
 }
 
 @media(max-width: 800px){
-    .list-group button{
+    .pokemon-list{
         display: grid;
-        padding:20px;
-        margin:auto;
+        grid-template-columns: 100%;
+        grid-template-rows:auto;
+        width:100%;
+        margin: 5px 20px;
+    }
+    .list-group button{
+        display: flex;
+        width: 300px;
+        padding:0;
+        margin:5px 10px;
+        font-size:20px;
+        height: 100px;
+        justify-content: center;
         align-items: center;
-        justify-content: center ;   
-        align-content: space-between;
     }
     
 }
