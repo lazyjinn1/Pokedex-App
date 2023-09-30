@@ -1,4 +1,4 @@
-
+//IIFE that contains most of the pokemonRepository functions
 var pokemonRepository = (function () {
 
     var pokemonList = [];
