@@ -2,7 +2,7 @@
 var pokemonRepository = (function () {
 
     var pokemonList = [];
-    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=151';
+    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=649';
 
     //general sounds used throughout project
     var error = new Audio(`assets/error.mp3`)
