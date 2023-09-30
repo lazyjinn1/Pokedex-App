@@ -135,7 +135,7 @@ button:active{
     
 }
 
-.Introduction input
+.Introduction #search-input
 {
     height: 100px;
 
@@ -147,7 +147,7 @@ button:active{
     text-align: center;
 }
 
-.Introduction button
+.Introduction #search
 {
     border-radius: 80%;
     padding: 30px;
@@ -224,6 +224,8 @@ button:active{
 {
     width: 100%;
     height: auto;
+    position:relative;
+    
 
     border-radius: 100px 100px;
     border-bottom: 2px solid black;
@@ -249,10 +251,10 @@ button:active{
         grid-row-start: 2;
         
     }
-    #pokemon-model{
-        margin: 50px;
-        height: auto;
-        width: auto;
+    #pokemon-model .pokeImage{
+        width: 100px;
+        height: 100px;
+        left:30%;
     }   
     .pokemon-avatar #pokemon-Title{
         margin-right: 40px;
@@ -269,10 +271,11 @@ button:active{
         margin: 20px;
         height: 100%;
     }   
-    #pokemon-model img{
-        height: auto;
-        width: auto;
+    #pokemon-model .pokeImage{
         padding-top: 50px;
+        left:0;
+        z-index:0;
+        position:static;
     }
     .pokemon-avatar #pokemon-Title{
         left: 5%;
@@ -623,7 +626,8 @@ button:active{
 .pokemon-List{
     display: flex;
     flex-basis: auto;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    flex-direction: column;
     flex-grow: 1;
     flex-shrink: 1;
     align-items: center;
@@ -632,7 +636,7 @@ button:active{
 
 .pokemon-List h1 {
     text-align: center;
-    flex-grow: 2;
+    flex-grow: 1;
 
     z-index:0;
 
@@ -657,7 +661,7 @@ button:active{
     border:0;
 }
 
-.list-group button{
+.list-group-item button{
     padding: 5px;
     margin: 10px 15px;
     text-align: center;
@@ -707,21 +711,14 @@ button:active{
     box-shadow: inset 0 -3em 3em rgba(red, 0.1), 0.3em 0.3em 1em rgba(red, 0.3);
 }
 
-@media (max-width: 800px){
+@media(max-width: 800px){
     .list-group button{
-        margin:5px 10px;
-        width: 90%;
-    }
-    .pokemon-List{
-        width: 100%;
-        align-items: baseline;
-        justify-content: space-evenly;
-        flex-direction: row;
-        align-content: center;
-    }
-
-    .list-group h1{
-        font-size:30px;
+        display: grid;
+        padding:20px;
+        margin:auto;
+        align-items: center;
+        justify-content: center ;   
+        align-content: space-between;
     }
     
 }
