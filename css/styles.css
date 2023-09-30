@@ -42,20 +42,6 @@
     
 }
 
-.spinner-grow{
-    position: absolute;
-    z-index: 9999;
-    left: 40%;
-    top: 50%;
-    width: 200px;
-    height: 200px;
-    color: white;
-    text-align: center;
-}
-
-
-
-
 /* basic formatting and CSS stuff */
 body
 {
@@ -232,8 +218,7 @@ button:active{
 }
 
 
-/* This is the second column first row. Will be a lot more important and will have the
-most amount of visual details once this is completed */
+/* This is the second part which will display the pokemon's model */
 .pokemon-avatar{
     height: 500px;
     max-height: 100%;
