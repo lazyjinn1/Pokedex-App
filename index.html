@@ -17,10 +17,63 @@
 </head>
 
 <body>
+  <!--navigation bar Bootstrap-->
+  <nav class = "navbar navbar-dark bg-dark sticky-top">
+
+    <a class = "navbar-brand active" href = "#">Generations</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Generation I<span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Generation II</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Generation III</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Generation IV</a>
+        </li>
+
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Generation V</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VI</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VII</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VIII</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation IX</a>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
   <main>
     <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
     <div class="Introduction">
-      <img id="Pokemon-Logo" src="assets/PokemonLogo.png">
+      <img class = "img-fluid" id="Pokemon-Logo" src="assets/PokemonLogo.png">
       <h1 id="Page-Title">Pokedex</h1>
 
       <p>Come learn about your favorite Pokemon!</p>
@@ -37,7 +90,7 @@
 
     <!--This is where the pokemon's name and image will be shown-->
     <div class="pokemon-avatar">
-      <button class = "show-modal">+</button>
+      <button class = "show-modal" data-toggle="modal" >+<span class="sr-only"></span></button>
       <button class = "randomizer">?</button>
       <h1 id="pokemon-Title"></h1>
       <div id="pokemon-model"></div>
@@ -67,10 +120,12 @@
     </div>
   </main>
 
+  
+
   <!-- The actual part of the CareerFoundry assignment haha -->
   <div class="pokemon-List">
     <h1>Full Pokedex:</h1>
-    <ul class="pokemon-entry"></ul>
+    <ul class="list-group"></ul>
   </div>
 
   <hr>
