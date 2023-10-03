@@ -166,6 +166,7 @@ button:active{
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgb(0, 0, 0);
     z-index: 0;
+    font-size:40px;
 }
 
 .Introduction #Pokemon-Logo
@@ -343,7 +344,7 @@ button:active{
     padding-right: 50px;
 }
 
-.Results h1{
+.Results h3{
     font-size: 150%;
     color: white;
     
