@@ -28,42 +28,42 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="main-nav navbar-nav nav">
 
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Generation I<span class="sr-only">(current)</span></a>
+        <li class="nav-item active" >
+          <button class="nav-link" id = "gen-one">Generation I</button>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Generation II</a>
+          <button class="nav-link" id = "gen-two">Generation II</button>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Generation III</a>
+          <button class="nav-link" id = "gen-three">Generation III</button>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Generation IV</a>
+          <button class="nav-link" id = "gen-four">Generation IV</button>
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#">Generation V</a>
+          <button class="nav-link" id = "gen-five">Generation V</button>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VI</a>
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-six">Generation VI</button>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VII</a>
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-seven">Generation VII</button>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation VIII</a>
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-eight">Generation VIII</button>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Generation IX</a>
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-nine">Generation IX</button>
         </li>
       </ul>
     </div>
@@ -73,7 +73,7 @@
   <main>
     <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
     <div class="Introduction">
-      <img class = "img-fluid" id="Pokemon-Logo" src="assets/PokemonLogo.png">
+      <img id="Pokemon-Logo" src="assets/PokemonLogo.png">
       <h1 id="Page-Title">Pokedex</h1>
 
       <p>Come learn about your favorite Pokemon!</p>
@@ -90,7 +90,7 @@
 
     <!--This is where the pokemon's name and image will be shown-->
     <div class="pokemon-avatar">
-      <button class = "show-modal" data-toggle="modal" >+<span class="sr-only"></span></button>
+      <button class = "show-modal">+</button>
       <button class = "randomizer">?</button>
       <h1 id="pokemon-Title"></h1>
       <div id="pokemon-model"></div>
@@ -106,16 +106,16 @@
       <h1>Pokemon Data</h1>
       <!-- Shows the data of the user's inputted pokemon -->
       <p id = "pokemon-details">
-        Pokemon Name: <span id="pokemon-name"></span>
+        <span id="pokemon-name"></span>
         <br>
         <br>
-        Pokedex Number: <span id="pokedex-number"></span>
+        <span id="pokedex-number"></span>
         <br>
         <br>
-        Height: <span id="pokemon-height"></span>
+        <span id="pokemon-height"></span>
         <br>
         <br>
-        Type: <span id="pokemon-type"></span>
+        <span id="pokemon-type"></span>
       </p>
     </div>
   </main>

@@ -3,7 +3,6 @@ var pokemonRepository = (function () {
 
     //this is my main array. It starts empty but is filled in using a combination of loadlist() and add()
     var pokemonList = [];
-    var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=649';
 
     //general sounds used throughout project
     var error = new Audio(`assets/error.mp3`)
@@ -21,9 +20,11 @@ var pokemonRepository = (function () {
     }
 
     //loads pokemon list from pokeAPI and pushes it to our pokemonList Array with name and detailsUrl properties
-    function loadList() {
-        return fetch(apiUrl).then(function (response) {
-            return response.json();
+    async function loadList(start, end) {
+        pokemonList = [];
+        var apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${start}&limit=${end}`;
+        return await fetch(apiUrl).then(async function (response) {
+            return await response.json();
         }).then(function (json) {
             json.results.forEach(function (pkmn) {
                 pkmn = {
@@ -65,17 +66,6 @@ var pokemonRepository = (function () {
         });
     }
 
-    function generationCheck(pkmn, a,b){
-        loadDetails(pkmn).then(function(){
-            pokemonList.filter((pkmn)=>(pkmn.pokedexNumber >= a && pkmn.pokedexNumber <= b)); 
-            return pokemonList[0].id; 
-        })
-    };
-
-    console.log(pokemonList.id);
-
-    generationCheck(1,151);
-
     //returns full pokemonList
     function getAll() {
         return pokemonList;
@@ -103,16 +93,8 @@ var pokemonRepository = (function () {
             li.classList.add('list-group-item');
             button.classList.add('dex-entry');
             img.classList.add('pokemon-sprites');
-
-            //This is how I cut off the '-' off of some pokemon's names (eg. Landorus-Incarnate) 
-            //and only display their actual name
-            if (pokemonNameEntry.indexOf('-') === -1) {
-                button.innerText = pokemonNameEntry;
-            }
-            else {
-                button.innerText = pokemonNameEntry.slice(0, pokemonNameEntry.indexOf('-'));
-            }
-
+            button.innerText = pokemonNameEntry;
+            
             //sticking everything together!
             button.appendChild(img);
             li.appendChild(button);
@@ -141,14 +123,15 @@ var pokemonRepository = (function () {
             //Capitalizes every pokemon's name
             var pkmnNameProperCase = pkmn.name.charAt(0).toUpperCase() + pkmn.name.substring(1);
             //console.log(pkmn.name);
-            document.querySelector('#pokemon-name').innerText = pkmnNameProperCase;
+            document.querySelector('#pokemon-name').innerText = 'Pokemon Name: ' + pkmnNameProperCase;
             document.querySelector('#pokemon-Title').innerText = pkmnNameProperCase;
-            document.querySelector('#pokedex-number').innerText = '#' + pkmn.pokedexNumber;
-            document.querySelector('#pokemon-height').innerText = pkmn.height / 10 + ' m';
+            document.querySelector('#pokedex-number').innerText = 'Pokedex #: ' + pkmn.pokedexNumber;
+            document.querySelector('#pokemon-height').innerText = 'Height: ' + pkmn.height / 10 + ' m';
 
             //If a pokemon has more than 1 type, this writes down both types.
             if (pkmn.type.length > 1) {
                 document.querySelector('#pokemon-type').innerText =
+                    'Types: ' +
                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1)
                     + ' and ' +
                     pkmn.type[1].type.name.charAt(0).toUpperCase() + pkmn.type[1].type.name.substring(1);
@@ -157,6 +140,7 @@ var pokemonRepository = (function () {
             //if it only has one, then it only writes the first (and only) type.
             else {
                 document.querySelector('#pokemon-type').innerText =
+                    'Type: ' +
                     pkmn.type[0].type.name.charAt(0).toUpperCase() + pkmn.type[0].type.name.substring(1);
             }
 
@@ -167,7 +151,7 @@ var pokemonRepository = (function () {
             //this plays a distinct pokemon cry
             playPokemonCry(pkmn.pokedexNumber);
             //this adds a function to the show modal button which displays more info about the pokemon
-            document.querySelector('.show-modal').addEventListener('click', () => {
+            moreDetails.classList.add('.show-modal').addEventListener('click', () => {
                 showModal(pkmnNameProperCase, pokemonGenusEntry, pkmnEntryFixed, pkmn.pokedexNumber);
             });
         });
@@ -255,6 +239,33 @@ var pokemonRepository = (function () {
         Sound(exit);
     }
 
+    function removePokeButtons(){
+        var buttons = document.querySelectorAll('.dex-entry');
+        var elements = document.querySelectorAll('.list-group-item')
+        for (let i = 0; i < buttons.length; i++) {
+            const elem = buttons[i];
+            elem.parentNode.removeChild(elem);
+            pokemonList = [];
+        }
+        for (let i = 0; i < elements.length; i++) {
+            const elem = elements[i];
+            elem.parentNode.removeChild(elem);
+            pokemonList = [];
+        }
+        pokemonList = [];
+    }
+
+    function generationCheck(a,b){
+        Sound(beep);
+        removePokeButtons();
+        loadList(a,b).then(function loadDetails() {
+            getAll().forEach(function (pkmn) {
+                addPokeButton(pkmn);
+            });
+        });
+    };
+
+
 
     //RETURN ALL THE THINGS.
     return {
@@ -310,8 +321,8 @@ function playPokemonCry(pokeID) {
     pokeCry.volume = 0.7;
 }
 
-//forEach loop which checks for pokemon's details and makes a custom button for it.
-pokemonRepository.loadList().then(function () {
+// forEach loop which checks for pokemon's details and makes a custom button for it.
+pokemonRepository.loadList(0,151).then(function () {
     pokemonRepository.getAll().forEach(function (pkmn) {
         pokemonRepository.addPokeButton(pkmn);
     });
@@ -350,7 +361,7 @@ if (searchButton) {
             var pokemonList = pokemonRepository.getAll();
             //we then filter said list so that we only return pokemon that have the same name as our search!
             var filteredPokemonList = pokemonList.filter(function (pkmn) {
-                return pkmn.name.toLowerCase().includes(searchInput.toLowerCase());
+                return (pkmn.name.toLowerCase() === searchInput.toLowerCase());
             });
             //Now if that filtered array is 0 (because the filter couldn't find any pokemon), then missingNo will come back
             if (filteredPokemonList.length === 0) {
@@ -389,3 +400,28 @@ $('#search-input').keypress(function (event) {
         pokemonRepository.showDetails(random);
     });
 }());
+
+
+let button1 = document.querySelector('#gen-one');
+button1.addEventListener('click', function(){
+    pokemonRepository.generationCheck(0,151)});
+
+
+let button2 = document.querySelector('#gen-two');
+button2.addEventListener('click', function (){
+    pokemonRepository.generationCheck(151,100)});
+
+
+let button3 = document.querySelector('#gen-three');
+button3.addEventListener('click', function(){
+    pokemonRepository.generationCheck(251,135)});
+
+
+let button4 = document.querySelector('#gen-four');
+button4.addEventListener('click', function(){
+    pokemonRepository.generationCheck(386,107)});
+
+
+let button5 = document.querySelector('#gen-five');
+button5.addEventListener('click', function(){
+    pokemonRepository.generationCheck(493,156)});

@@ -29,6 +29,15 @@
     float:right;
 }
 
+.navbar .nav-link{
+    color: white;
+    background-color: black;
+    max-width: 100%;
+    width: auto;
+    padding: 5px;
+    border-radius: 10px;
+}
+
 @media (max-width: 800px)
 {
     .navbar{
@@ -806,3 +815,4 @@ button:active{
     transform: var(--scale-up);
     opacity: var(--opacity-down);
 }
+
