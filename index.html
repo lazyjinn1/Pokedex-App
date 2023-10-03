@@ -31,10 +31,63 @@
 </head>
 
 <body>
+   <!--navigation bar Bootstrap-->
+   <nav class = "navbar navbar-dark bg-dark sticky-top">
+
+    <a class = "navbar-brand active" href = "#">Generations</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="main-nav navbar-nav nav">
+
+        <li class="nav-item active" >
+          <button class="nav-link" id = "gen-one">Generation I</button>
+        </li>
+
+        <li class="nav-item active">
+          <button class="nav-link" id = "gen-two">Generation II</button>
+        </li>
+
+        <li class="nav-item active">
+          <button class="nav-link" id = "gen-three">Generation III</button>
+        </li>
+
+        <li class="nav-item active">
+          <button class="nav-link" id = "gen-four">Generation IV</button>
+        </li>
+
+        <li class="nav-item active">
+          <button class="nav-link" id = "gen-five">Generation V</button>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-six">Generation VI</button>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-seven">Generation VII</button>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-eight">Generation VIII</button>
+        </li>
+
+        <li class="nav-item">
+          <button class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id = "gen-nine">Generation IX</button>
+        </li>
+      </ul>
+    </div>
+
+  </nav>
+
   <main>
     <!-- First part of the page. Introduces the user and allows them to write down a specific pokemon -->
     <div class="Introduction">
-      <img id="Pokemon-Logo" src="assets/PokemonLogo.png" alt = "pokeball">
+      <img id="Pokemon-Logo" src="assets/PokemonLogo.png">
       <h1 id="Page-Title">Pokedex</h1>
 
       <p>Come learn about your favorite Pokemon!</p>
@@ -52,11 +105,7 @@
 
     <!--This is where the pokemon's name and image are shown-->
     <div class="pokemon-avatar">
-
-      <!-- this is the show modal/show more details button -->
-      <button class = "show-modal" data-toggle="modal" >+<span class="sr-only"></span></button>
-
-      <!-- this is the randomize pokemon button -->
+      <button class = "show-modal">+</button>
       <button class = "randomizer">?</button>
 
       <!-- the pokemon's name -->
@@ -79,16 +128,16 @@
 
       <!-- this is where the pokemons' various details are going to be listed -->
       <p id = "pokemon-details">
-        Pokemon Name: <span id="pokemon-name"></span>
+        <span id="pokemon-name"></span>
         <br>
         <br>
-        Pokedex Number: <span id="pokedex-number"></span>
+        <span id="pokedex-number"></span>
         <br>
         <br>
-        Height: <span id="pokemon-height"></span>
+        <span id="pokemon-height"></span>
         <br>
         <br>
-        Type: <span id="pokemon-type"></span>
+        <span id="pokemon-type"></span>
       </p>
     </div>
   </main>
