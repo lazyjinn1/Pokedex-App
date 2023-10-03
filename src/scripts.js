@@ -151,7 +151,7 @@ var pokemonRepository = (function () {
             //this plays a distinct pokemon cry
             playPokemonCry(pkmn.pokedexNumber);
             //this adds a function to the show modal button which displays more info about the pokemon
-            moreDetails.classList.add('.show-modal').addEventListener('click', () => {
+            document.querySelector('.show-modal').addEventListener('click', () => {
                 showModal(pkmnNameProperCase, pokemonGenusEntry, pkmnEntryFixed, pkmn.pokedexNumber);
             });
         });
