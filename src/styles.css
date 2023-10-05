@@ -334,8 +334,6 @@ button:active{
 }
 
 
-
-
 /* This has the results for the user input in the Introductions Column */
 .Results
 {
@@ -817,3 +815,7 @@ button:active{
     opacity: var(--opacity-down);
 }
 
+/* display none */
+.invisible{
+    display:none;
+}

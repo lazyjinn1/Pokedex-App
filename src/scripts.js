@@ -24,44 +24,49 @@ let pokemonRepository = (function () {
         pokemonList = [];
         const apiUrl = `https://pokeapi.co/api/v2/pokemon/?offset=${start}&limit=${end}`;
         try {
-            const res = await fetch(apiUrl);
-            const json = await res.json();
+            const response = await fetch(apiUrl);
+            const json = await response.json();
             for (const result of json.results) {
                 add({
                     name: result.name,
-                    detailsUrl: result.url
+                    detailsUrl: result.url,
                 });
             }
+            
         } catch (error) {
             console.error(error);
         };
-    }                                                                                        
+    }  
 
-        //returns data about pokemon. Used in combination with for each to display all information about a pokemon needed.
-        function loadDetails(pkmn) {
+    async function loadDetails(pkmn) {
+        try {
             let url = pkmn.detailsUrl;
-            return fetch(url).then(function (response) {
-                return response.json();
-            }).then(function (details) {
-                pkmn.imageUrl = details.sprites.front_default;
-                pkmn.height = details.height;
-                pkmn.pokedexNumber = details.id;
-                pkmn.type = details.types;
-                //Lines 53-61 is there because I needed to filter out the english pokemon 'genus' and 'flavor_texts' for my modal
-                pkmn.speciesUrl = details.species.url;
-                return fetch(pkmn.speciesUrl).then(function (response) {
-                    return response.json();
-                }).then(function (details1) {
-                    const filteredFlavorText = details1.flavor_text_entries.filter((a) => a.language.name === "en");
-                    const filteredTitleText = details1.genera.filter((a) => a.language.name === "en");
-
-                    pkmn.pkdxTitle = filteredTitleText[0].genus;
-                    pkmn.pkdxEntry = filteredFlavorText[0].flavor_text;
-                });
-            }).catch(function (e) {
-                console.error(e);
-            });
+    
+            // Fetch details
+            const response = await fetch(url);
+            const json = await response.json();
+    
+            pkmn.imageUrl = json.sprites.front_default;
+            pkmn.height = json.height;
+            pkmn.pokedexNumber = json.id;
+            pkmn.type = json.types;
+    
+            // Fetch species details
+            pkmn.speciesUrl = json.species.url;
+            const speciesResponse = await fetch(pkmn.speciesUrl);
+            const json2 = await speciesResponse.json();
+    
+            // Filter and assign genus and flavor_text
+            const filteredFlavorText = json2.flavor_text_entries.find(entry => entry.language.name === "en");
+            const filteredTitleText = json2.genera.find(genus => genus.language.name === "en");
+    
+            pkmn.pkdxTitle = filteredTitleText.genus;
+            pkmn.pkdxEntry = filteredFlavorText.flavor_text;
         }
+        catch (error) {
+            console.error(error);
+        }
+    }
 
         //returns full pokemonList
         function getAll() {
@@ -148,7 +153,9 @@ let pokemonRepository = (function () {
                 //this plays a distinct pokemon cry
                 playPokemonCry(pkmn.pokedexNumber);
                 //this adds a function to the show modal button which displays more info about the pokemon
-                document.querySelector('.show-modal').addEventListener('click', () => {
+                let showModalButton = document.querySelector('.show-modal');
+                showModalButton.classList.remove('invisible');
+                showModalButton.addEventListener('click', () => {
                     showModal(pkmnNameProperCase, pokemonGenusEntry, pkmnEntryFixed, pkmn.pokedexNumber);
                 });
             });
@@ -236,6 +243,7 @@ let pokemonRepository = (function () {
             Sound(exit);
         }
 
+        //used in combination with generationCheck to change the generation of pokemom
         function removePokeButtons() {
             let buttons = document.querySelectorAll('.dex-entry');
             let elements = document.querySelectorAll('.list-group-item')
@@ -252,6 +260,7 @@ let pokemonRepository = (function () {
             pokemonList = [];
         }
 
+        //loads different generation
         function generationCheck(a, b) {
             Sound(beep);
             removePokeButtons();
@@ -319,7 +328,8 @@ let pokemonRepository = (function () {
     }
 
     // forEach loop which checks for pokemon's details and makes a custom button for it.
-    pokemonRepository.loadList(0, 151).then(function () {
+    pokemonRepository.loadList(0,151).then(function(){
+        pokemonRepository.getAll().sort((a,b)=>a.pokedexNumber - b.pokedexNumber);
         pokemonRepository.getAll().forEach(function (pkmn) {
             pokemonRepository.addPokeButton(pkmn);
         });
