@@ -1,21 +1,63 @@
-Project description
-This is a project using HTML, CSS and JS where I fetched data from the PokeAPI in order to display
-ad Pokedex-esque web application. It contains various audio files, animations and plenty of fun design choices.
+# Pokedex App
+
+This is a simple JS app that allows you to sort through different generations (1-5) of pokemon and learn a little bit more about them.
+Learn about your favorite pokemon's type, height, pokedex information and even hear their voice! This is a basic pokedex app for 
+any pokeFan.
+
+## Table of Contents
+
+- [Features](#features)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
 
-How to get the project running
-Click on any of the buttons at the bottom in order to showcase and highlight a certain pokemon, alternatively you can
-search for a specific pokemon on the search box. Just be careful about spelling or you might bring out MissingNo!
-There is also a random button just in case you don't have any pokemon in mind or if you just wanna see who you get!
-Also make sure to click on the + icon in order to bring up some flavor text and titles unique to each pokemon!
+## Features
 
+-View a variety of pokemon from generations 1 to 5 through buttons with the pokemon's name and sprite
+-A generation selector that filters the buttons based on the generation the pokemon was introduced!
+-Clickable buttons that, when clicked, show a bigger non-sprite art of the pokemon along with some neat little details
+-Hear a pokemon's voice every time you click on them!
+-A search function that allows you to search for your favorite pokemon directly! (Be careful of spelling though!)
+-A random button that calls upon a random pokemon from the current generation selected.
+-A show more details button that appears when a pokemon is selected. When clicked, this brings up a modal that shows a pokedex flavor-text for said pokemon!
 
-Project dependencies (e.g., JavaScript version, ESLint rules)
-IO used Javascript ES6, ESLint default recommended rules, Jquery and some Bootstrap in order to create this project.
+## Getting Started
 
+### Prerequisites
 
-Which API the project uses
-This uses the PokeAPI as well as some public repositories for the pictures and pokemon Cries.
+To run the Simple JS Pokedex App, you need a web browser with JavaScript enabled.
 
-Please let me know if there is anything I can answer you! This is my first real website other than my portfolio and 
-I'd love to hear your critiques!
+### Installation
+
+1. Clone or download the repository to your local machine.
+2. Ensure you have access to the internet to fetch data from the PokeAPI.
+3. Open the `index.html` file in your preferred web browser.
+
+Alternatively:
+1. open up the GitHub pages link: https://lazyjinn1.github.io/Pokedex-App/
+
+## Usage
+
+1. Upon opening the application on your web browser, you will see a list of Pokémon on the home page.
+2. Use the search bar at the left of the browser (or top if in mobile)
+3. Click on a Pokémon's name in the list to bring your screen back up to the top and view the pokemon with some details on the side
+4. The (+) button that appears when you select a pokemon will give you some pokemon trivia straight from the pokedex!
+5. Click the "X" button in the modal to close it and return to the main list.
+6. Spend countless hours shifting generations and clicking the random button repeatedly just to listen to their cute voices haha
+
+## Contributing
+
+Contributions to the Simple JS Pokedex App are welcome! If you have any suggestions, bug fixes, or feature enhancements, feel free to open an issue or submit a pull request.
+
+Before contributing, please review the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## License
+
+The Simple JS Pokedex App is open-source software licensed under the [MIT License](LICENSE).
+
+## Acknowledgements
+
+- The Simple JS Pokedex App utilizes the [PokeAPI](https://pokeapi.co/) for fetching Pokémon data.
+- The navigation is based on the [Bootstrap](https://getbootstrap.com/) framework
