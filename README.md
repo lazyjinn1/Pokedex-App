@@ -15,13 +15,13 @@ any pokeFan.
 
 ## Features
 
--View a variety of pokemon from generations 1 to 5 through buttons with the pokemon's name and sprite
--A generation selector that filters the buttons based on the generation the pokemon was introduced!
--Clickable buttons that, when clicked, show a bigger non-sprite art of the pokemon along with some neat little details
--Hear a pokemon's voice every time you click on them!
--A search function that allows you to search for your favorite pokemon directly! (Be careful of spelling though!)
--A random button that calls upon a random pokemon from the current generation selected.
--A show more details button that appears when a pokemon is selected. When clicked, this brings up a modal that shows a pokedex flavor-text for said pokemon!
+- View a variety of pokemon from generations 1 to 5 through buttons with the pokemon's name and sprite
+- A generation selector that filters the buttons based on the generation the pokemon was introduced!
+- Clickable buttons that, when clicked, show a bigger non-sprite art of the pokemon along with some neat little details
+- Hear a pokemon's voice every time you click on them!
+- A search function that allows you to search for your favorite pokemon directly! (Be careful of spelling though!)
+- A random button that calls upon a random pokemon from the current generation selected.
+- A show more details button that appears when a pokemon is selected. When clicked, this brings up a modal that shows a pokedex flavor-text for said pokemon!
 
 ## Getting Started
 
