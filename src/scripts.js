@@ -181,8 +181,7 @@ let pokemonRepository = (function () {
             closeButtonElement.addEventListener('click', () => {
                 hideModal();
             });
-
-
+            
             //this closes when user presses Escape
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
